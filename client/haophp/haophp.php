@@ -22,6 +22,5 @@ include _ROOT_.'functions.php';
 include_once CORE_PATH.'/App'.CLASS_EXT;
 $app = \core\App::get();
 
-//broadcast
 //启动
 $app->start();

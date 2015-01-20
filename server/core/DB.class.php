@@ -14,6 +14,14 @@ class DB {
 
 	function __construct(){
 		$config = Config::get('database');
+		$config = array(
+			'db_host'               =>  '127.0.0.1',
+			'db_name'               =>  'iChat',
+			'db_user'               =>  'root',
+			'db_pwd'                =>  'root',
+			'db_port'               =>  '3306',
+			'db_pre'                =>  'chat_',
+		);
 		$this->pre = $config['db_pre'];
 
 		if(!$config['db_host'] || !$config['db_name'] || !$config['db_user']) {
@@ -94,6 +102,7 @@ class DB {
 	 */
 	public function insert($table, $data=array()) {
 		if(!$data || !is_array($data)) return false;
+		$data = $this->create($table, $data);
 		$data = $this->quote($data);
 
 		$keys = $vals = '';
@@ -126,6 +135,8 @@ class DB {
 	 */
 	public function update($table, $data=array(), $condition="") {
 		if(!$table || !$condition || !$data) return false;
+		$data = $this->create($table, $data);
+
 		if(is_array($condition)) {
 
 		} else {
@@ -222,6 +233,24 @@ class DB {
 	 */
 	public function table($table) {
 		return $this->pre.$table;
+	}
+
+	public function create($table,$data) {
+		$ret = $this->fetch_all("show columns from %t", array($table));
+		$fields = array();
+		if($ret) {
+			foreach($ret as $key=>$v) {
+				$fields[] = $v['Field'];
+			}
+
+			foreach($data as $k=>$v) {
+				if(!in_array($k, $fields)) {
+					unset($data[$k]);
+				}
+			}
+		}
+
+		return $data;
 	}
 
 	/**
