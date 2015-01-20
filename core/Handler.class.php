@@ -6,7 +6,29 @@ use core\Command;
 use core\DB;
 
 class Handler {
-	public $db;
+	const OPCODE_CONTINUATION_FRAME = 0x0;
+	const OPCODE_TEXT_FRAME         = 0x1;
+	const OPCODE_BINARY_FRAME       = 0x2;
+	const OPCODE_CONNECTION_CLOSE   = 0x8;
+	const OPCODE_PING               = 0x9;
+	const OPCODE_PONG               = 0xa;
+
+	const CLOSE_NORMAL              = 1000;
+	const CLOSE_GOING_AWAY          = 1001;
+	const CLOSE_PROTOCOL_ERROR      = 1002;
+	const CLOSE_DATA_ERROR          = 1003;
+	const CLOSE_STATUS_ERROR        = 1005;
+	const CLOSE_ABNORMAL            = 1006;
+	const CLOSE_MESSAGE_ERROR       = 1007;
+	const CLOSE_POLICY_ERROR        = 1008;
+	const CLOSE_MESSAGE_TOO_BIG     = 1009;
+	const CLOSE_EXTENSION_MISSING   = 1010;
+	const CLOSE_SERVER_ERROR        = 1011;
+	const CLOSE_TLS                 = 1015;
+
+	const WEBSOCKET_VERSION         = 13;
+
+
 	/**
 	 * 服务启动回调
 	 * @param  swoole_server $serv [description]
@@ -58,9 +80,12 @@ class Handler {
 			'lasttime' => TIME,
 		);
 
+
+
 		$db = new DB();
 		$msgid = $db->insert("online", $data);
 		echo date("H:i:s")." : #".$fd." 进入频道 \n";
+
 	}
 
 	/**
@@ -70,9 +95,11 @@ class Handler {
 	public function receive(\swoole_server $serv, $fd, $from_id, $data) {
 		//http握手
 		$this->revHttp($serv, $fd, $from_id, $data);
-		$ttt = $this->decode($data);
 
-		$msg = trim($ttt);
+		$wsdata = $this->parseFrame($data);
+		$msg = $wsdata['message'];
+		$msg = trim($msg);
+
 		//忽略空消息
 		if(empty($msg)) return false;
 
@@ -90,38 +117,8 @@ class Handler {
 			'type' => 'message'
 		);
 
-		$serv->send($fd,$this->frame($d['msg']),$from_id);
-
-		echo date("H:i:s")." : #".$fd." 发送了消息 ".$d['msg']." \n";
-//		$serv->task( json_encode($d));
-
-
-		/////////
-
-		$db = new DB();
-		#1 将用户消息入库
-		unset($d['type']);
-		$msgid = $db->insert("message", $d);
-
-		#2 将消息发给其它在线用户
-		$onlines = $db->fetch_all("select * from %t where fd != %d", array('online', $d['fd']));
-
-		echo date("H:i:s")." : 当前有 ".count($onlines)." 人在线，开始发送消息 \"".$d['msg']."\" \n";
-		if($onlines) {
-			foreach ($onlines as $key => $val) {
-				if($val['nickname']) {
-					$nick = $val['nickname']." : ";
-				}
-
-				$serv->send($val['fd'], $this->frame($d['msg'])."\n", $val['from_id']);
-				echo date("H:i:s")." : 消息已发送给 #".$val['fd']." \n";
-
-			}
-		}
-
-		/////////
-
-
+		$serv->send($fd,$this->frame($d['msg']));
+		$serv->task( json_encode($d));
 	}
 
 	/**
@@ -144,6 +141,7 @@ class Handler {
 		if(!$db) {
 			$db = new DB();
 		}
+		$db = new DB();
 
 		$d = json_decode($data, true);
 		$type = $d['type'];
@@ -160,15 +158,21 @@ class Handler {
 				echo date("H:i:s")." : 当前有 ".count($onlines)." 人在线，开始发送消息 #".$d['msg']." \n";
 				if($onlines) {
 					foreach ($onlines as $key => $val) {
-						if($val['nickname']) {
-							$nick = $val['nickname']." : ";
-						}
-
-						$serv->send($val['fd'], $this->frame($d['msg'])."\n", $val['from_id']);
-						echo date("H:i:s")." : 消息已发送给 #".$val['fd']." \n";
-
+						$serv->send((int)$val['fd'],$this->frame($d['msg']),$from_id);
 					}
 				}
+
+//				if($onlines) {
+//					foreach ($onlines as $key => $val) {
+//						if($val['nickname']) {
+//							$nick = $val['nickname']." : ";
+//						}
+//
+//						$serv->send($val['fd'], $this->frame($d['msg'])."\n", $val['from_id']);
+//						echo date("H:i:s")." : 消息已发送给 #".$val['fd']." \n";
+//
+//					}
+//				}
 
 				echo "\n";
 				echo "\n";
@@ -271,15 +275,128 @@ Sec-WebSocket-Accept:".$response_key." \r\n\r\n";
 	 * @param  [type] $s [description]
 	 * @return [type]    [description]
 	 */
-	public function frame($s) {
-	    $a = str_split($s, 125);
-	    if (count($a) == 1) {
-	        return "\x81" . chr(strlen($a[0])) . $a[0];
-	    }
-	    $ns = "";
-	    foreach ($a as $o) {
-	        $ns .= "\x81" . chr(strlen($o)) . $o;
-	    }
-	    return $ns;
+	public function frame($message,  $opcode = self::OPCODE_TEXT_FRAME, $end = true ) {
+		$fin    = true === $end ? 0x1 : 0x0;
+		$rsv1   = 0x0;
+		$rsv2   = 0x0;
+		$rsv3   = 0x0;
+		$mask   = 0x1;
+		$length = strlen($message);
+		$out    = chr(
+			($fin  << 7)
+			| ($rsv1 << 6)
+			| ($rsv2 << 5)
+			| ($rsv3 << 4)
+			| $opcode
+		);
+
+		if(0xffff < $length)
+			$out .= chr(0x7f) . pack('NN', 0, $length);
+		elseif(0x7d < $length)
+			$out .= chr(0x7e) . pack('n', $length);
+		else
+			$out .= chr($length);
+
+		$out .= $message;
+		return $out;
+	}
+
+	private function parseFrame(&$data)
+	{
+		//websocket
+		$ws  = array();
+		$ws['finish'] = false;
+		$data_offset = 0;
+
+		//fin:1 rsv1:1 rsv2:1 rsv3:1 opcode:4
+		$handle        = ord($data[$data_offset]);
+		$ws['fin']    = ($handle >> 7) & 0x1;
+		$ws['rsv1']   = ($handle >> 6) & 0x1;
+		$ws['rsv2']   = ($handle >> 5) & 0x1;
+		$ws['rsv3']   = ($handle >> 4) & 0x1;
+		$ws['opcode'] =  $handle       & 0xf;
+		$data_offset++;
+
+		//mask:1 length:7
+		$handle        = ord($data[$data_offset]);
+		$ws['mask']   = ($handle >> 7) & 0x1;
+		//0-125
+		$ws['length'] =  $handle       & 0x7f;
+		$length        = &$ws['length'];
+		$data_offset++;
+
+		if(0x0 !== $ws['rsv1'] || 0x0 !== $ws['rsv2'] || 0x0 !== $ws['rsv3'])
+		{
+			//$this->close(self::CLOSE_PROTOCOL_ERROR);
+			return false;
+		}
+		if(0 === $length)
+		{
+			$ws['message'] = '';
+			$data = substr($data, $data_offset + 4);
+			return $ws;
+		}
+		//126 short
+		elseif(0x7e === $length)
+		{
+			//2
+			$handle = unpack('nl', substr($data, $data_offset, 2));
+			$data_offset += 2;
+			$length = $handle['l'];
+		}
+		//127 int64
+		elseif(0x7f === $length)
+		{
+			//8
+			$handle = unpack('N*l', substr($data, $data_offset, 8));
+			$data_offset += 8;
+			$length = $handle['l2'];
+			if($length > $this->max_frame_size)
+			{
+				$this->log('Message is too long.');
+				return false;
+			}
+		}
+
+		if(0x0 !== $ws['mask'])
+		{
+			//int32
+			$ws['mask'] = array_map('ord', str_split(substr($data, $data_offset, 4)));
+			$data_offset += 4;
+		}
+
+		//把头去掉
+		$data = substr($data, $data_offset);
+		//完整的一个数据帧
+		if (strlen($data) >= $length) {
+			$ws['finish'] = true;
+			$ws['buffer'] =  substr($data, 0, $length);
+			$ws['message'] = $this->parseMessage($ws);
+			//截取数据
+			$data = substr($data, $length);
+			return $ws;
+		} else { //需要继续等待数据
+			$ws['finish'] = false;
+			$ws['buffer'] = $buffer;
+			$buffer = "";
+			return $ws;
+		}
+
+	}
+
+	protected function parseMessage($ws)
+	{
+		$buffer = $ws['buffer'];
+		//没有mask
+		if(0x0 !== $ws['mask'])
+		{
+			$maskC = 0;
+			for($j = 0, $_length = $ws['length']; $j < $_length; ++$j)
+			{
+				$buffer[$j] = chr(ord($buffer[$j]) ^ $ws['mask'][$maskC]);
+				$maskC       = ($maskC + 1) % 4;
+			}
+		}
+		return $buffer;
 	}
 }

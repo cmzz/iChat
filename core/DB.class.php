@@ -14,21 +14,11 @@ class DB {
 
 	function __construct(){
 		$config = Config::get('database');
-		$config = array(
-			'db_host'               =>  '127.0.0.1',
-			'db_name'               =>  'iChat',
-			'db_user'               =>  'root',
-			'db_pwd'                =>  'root',
-			'db_port'               =>  '3306',
-			'db_pre'                =>  'chat_',
-		);
-
 		$this->pre = $config['db_pre'];
 
 		if(!$config['db_host'] || !$config['db_name'] || !$config['db_user']) {
             throw new \Exception("请先设置数据库连接参数");  		
 		}
-
 
 		$mysqli = mysqli_init();
 
