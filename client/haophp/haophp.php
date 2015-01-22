@@ -2,7 +2,6 @@
 
 global $config;
 
-error_reporting(7);
 
 //定义类文件后缀名
 const CLASS_EXT = ".class.php";
