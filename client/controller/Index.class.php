@@ -97,13 +97,18 @@ class Index extends Controller {
                 $ol['uid'] = $id;
                 $ol['lasttime'] = TIME;
 
-                $oid = DB::insert('online',$ol);
-                if($oid) {
-                    session('uid',$id);
-                    session('info', $info);
-
-                    $this->redirect('index','openid='.$info['openid']);
+                if(!DB::fetch_first("select * from %t where uid=%d",array('online',$id))) {
+                    $oid = DB::insert('online',$ol);
                 }
+
+                session('uid',$id);
+                session('info', $info);
+                
+                echo 333;
+
+                $this->redirect('index','openid='.$info['openid']);
+
+                exit;
             }
 
             $this->redirect('login');
