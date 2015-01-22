@@ -44,6 +44,13 @@ class Index extends Controller {
      * 注册
      */
     public function reg () {
+
+    }
+
+    /**
+     * QQ登陆回调函数
+     */
+    public function qqlogin() {
         $api = Config::get('global','qqconnect');
         if($_REQUEST['state'] == session('state')) //csrf
         {
@@ -69,27 +76,59 @@ class Index extends Controller {
 
             $params = array();
             parse_str($response, $params);
+            session('access_token',$params["access_token"]);
 
-            //debug
-            print_r($params);
+            $this->get_openid();
 
-            //set access token to session
-            $_SESSION["access_token"] = $params["access_token"];
+            $arr = $this->get_user_info();
+
+            dump($arr);
+
         } else {
             echo("The state does not match. You may be a victim of CSRF.");
         }
     }
 
-    /**
-     * QQ登陆回调函数
-     */
-    public function qqlogin() {
+    protected function get_openid() {
+        $graph_url = "https://graph.qq.com/oauth2.0/me?access_token="
+            . session('access_token');
 
+        $str  = file_get_contents($graph_url);
+
+        if (strpos($str, "callback") !== false)
+        {
+            $lpos = strpos($str, "(");
+            $rpos = strrpos($str, ")");
+            $str  = substr($str, $lpos + 1, $rpos - $lpos -1);
+        }
+
+        $user = json_decode($str);
+        if (isset($user->error))
+        {
+            echo "<h3>error:</h3>" . $user->error;
+            echo "<h3>msg  :</h3>" . $user->error_description;
+            exit;
+        }
+
+        session("openid") = $user->openid;
     }
 
-    protected function getQqLoginUrl($appid, $callback)
-    {
-        $state = md5(uniqid(rand(), TRUE)); //CSRF protection
+    protected function get_user_info() {
+        $api = Config::get('global','qqconnect');
+        $get_user_info = "https://graph.qq.com/user/get_user_info?"
+            . "access_token=" . session('access_token')
+            . "&oauth_consumer_key=" . $api["appid"]
+            . "&openid=" . session("openid")
+            . "&format=json";
+
+        $info = file_get_contents($get_user_info);
+        $arr = json_decode($info, true);
+
+        return $arr;
+    }
+
+    protected function getQqLoginUrl($appid, $callback) {
+        $state = md5(uniqid(rand(), TRUE));
         session('state', $state);
 
         $login_url = "https://graph.qq.com/oauth2.0/authorize?response_type=code&client_id="
