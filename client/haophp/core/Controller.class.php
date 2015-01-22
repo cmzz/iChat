@@ -15,7 +15,7 @@ class Controller {
 
     }
 
-    protected function redirect($u) {
+    protected function redirect($u, $vars="") {
         $tmp = explode('/',$u);
 
         if (count($tmp) > 1) {
@@ -24,7 +24,10 @@ class Controller {
         $action = array_shift($tmp);
 
         $url = APP_ROOT.str_replace('//','/','index.php/'.$controller.'/'.$action);
-
+        if($vars) {
+            $vars = str_replace(array('=','&'),'/',$vars);
+            $url .= $vars;
+        }
 
         header("location:".$url);
     }

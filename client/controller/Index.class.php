@@ -24,6 +24,7 @@ class Index extends Controller {
 //            $this->redirect('login');
 //        }
 
+        dump(session());
 
         include template();
     }
@@ -103,18 +104,16 @@ class Index extends Controller {
 
                 session('uid',$id);
                 session('info', $info);
-                
-                echo 333;
+                session('openid', $info['openid']);
 
                 $this->redirect('index','openid='.$info['openid']);
-
                 exit;
             }
 
             $this->redirect('login');
 
         } else {
-            echo("The state does not match. You may be a victim of CSRF.");
+            echo("need login");
         }
     }
 
