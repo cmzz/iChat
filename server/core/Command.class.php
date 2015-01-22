@@ -26,7 +26,9 @@ class Command {
 		$serv->close($fd);
 	}
 
-
+	public function getOnlineList(\swoole_server $serv, $fd='', $from_id='', $data='') {
+		var_dump($data);
+	}
 
 	######## 系统管理命令 
 	/**

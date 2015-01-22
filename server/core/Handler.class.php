@@ -25,8 +25,14 @@ class Handler {
 	const CLOSE_EXTENSION_MISSING   = 1010;
 	const CLOSE_SERVER_ERROR        = 1011;
 	const CLOSE_TLS                 = 1015;
-
 	const WEBSOCKET_VERSION         = 13;
+
+	const TIMEER_ONLINEMEMBERS		= 1000*60*1;
+
+	const TYPE_NORMAL				= 100; //普通消息
+	const TYPE_PERSERNOL			= 101; //私语
+	const TYPE_SYSTEM_NOTICE		= 200; //系统通知
+	const TYPE_PUSH_ONLINEMEMBERS   = 1000;//推送在线会员列表消息
 
 
 	/**
@@ -39,7 +45,6 @@ class Handler {
 		echo "Server [".date("H:i:s",time())."] : 服务启动成功！ \n";
 		//服务启动时清空在线列表
 		$this->db->query("TRUNCATE TABLE %t", array("online"));
-
 	}
 
 	/**
@@ -47,7 +52,8 @@ class Handler {
 	 * @return [type] [description]
 	 */
 	public function workStart($serv) {
-//		$serv->addtimer(5000);
+		// 进程0 执行在线用户检查及推送 3分钟
+		if ($serv->worker_id == 0) $serv->addtimer(self::TIMEER_ONLINEMEMBERS);
 	}
 
 	/**
@@ -81,11 +87,10 @@ class Handler {
 		);
 
 
-
+		//更新用户在线状态
 		$db = new DB();
-		$msgid = $db->insert("online", $data);
-		echo date("H:i:s")." : #".$fd." 进入频道 \n";
-
+		$db->insert("online", $data);
+		echo "\n".date("H:i:s")." : #".$fd." 进入频道 \n";
 	}
 
 	/**
@@ -108,6 +113,7 @@ class Handler {
 
 		#确认用户是否管理员
 
+
 		#管理员命令
 		$d = array(
 			'msg' => $msg,
@@ -117,7 +123,7 @@ class Handler {
 			'type' => 'message'
 		);
 
-		$serv->send($fd,$this->frame($d['msg']));
+		$serv->send($fd,$this->frame($msg));
 		$serv->task( json_encode($d));
 	}
 
@@ -133,52 +139,59 @@ class Handler {
 	}
 
 	/**
-	 * 任务
+	 * 异步任务
 	 * @return [type] [description]
 	 */
-	public function task($serv,$task_id,$from_id, $data) {
+	public function task($serv, $task_id, $from_id, $data) {
 		static $db = null;
-		if(!$db) {
-			$db = new DB();
-		}
-		$db = new DB();
+		if(!$db) {$db = new DB();}
 
 		$d = json_decode($data, true);
 		$type = $d['type'];
 		unset($d['type']);
 
+		//获取在线用户列表
+		$onlines = $db->fetch_all("select * from %t where 1", array('online'));
+		$notme = false;
+
+		$message = "";
 		switch($type) {
+			//处理消息
 			case "message":
 				#1 将用户消息入库
-				$msgid = $db->insert("message", $d);
+				$db->insert("message", $d);
+				$notme = true;
+				$message = $d['msg'];
+				$type = self::TYPE_NORMAL;
+				break;
 
-				#2 将消息发给其它在线用户
-				$onlines = $db->fetch_all("select * from %t where fd != %d", array('online', $d['fd']));
+			//推送在线会员列表
+			case "pushOnline":
+				$message = $db->fetch_all("select * from %t where 1", array('online'));
+				$type = self::TYPE_PUSH_ONLINEMEMBERS;
 
-				echo date("H:i:s")." : 当前有 ".count($onlines)." 人在线，开始发送消息 #".$d['msg']." \n";
-				if($onlines) {
-					foreach ($onlines as $key => $val) {
-						$serv->send((int)$val['fd'],$this->frame($d['msg']),$from_id);
-					}
+				//给单独用户推送在线会员列表
+				if($d['sendto']) {
+					$msg = $this->createRecMsg($message, $type);
+					$serv->send((int)$d['sendto'],$this->frame($msg),$from_id);
 				}
 
-//				if($onlines) {
-//					foreach ($onlines as $key => $val) {
-//						if($val['nickname']) {
-//							$nick = $val['nickname']." : ";
-//						}
-//
-//						$serv->send($val['fd'], $this->frame($d['msg'])."\n", $val['from_id']);
-//						echo date("H:i:s")." : 消息已发送给 #".$val['fd']." \n";
-//
-//					}
-//				}
-
-				echo "\n";
-				echo "\n";
-
-				exit;
 				break;
+		}
+
+		//将消息发给在线用户
+		if($onlines) {
+			echo date("H:i:s")." : 当前有 ".count($onlines)." 人在线，开始发送消息 == ". json_encode($message) ." \n";
+			foreach ($onlines as $key => $val) {
+				if($notme && $val['fd'] == $d['fd']) continue;
+
+				$msg = $this->createRecMsg($message, $type, $val['fd']);
+
+				//开始发送消息
+				$serv->send((int)$val['fd'],$this->frame($msg),$from_id);
+			}
+		} else {
+			echo "没有在线用户";
 		}
 
 	}
@@ -206,23 +219,66 @@ class Handler {
 	 * @return [type] [description]
 	 */
 	public function timer($serv, $interval) {
+		switch ($interval) {
+			//3分钟任务，检查在线用户
+			case self::TIMEER_ONLINEMEMBERS:
+				$data['type'] = "pushOnline";
+				$serv->task( json_encode($data) );
+				break;
+		}
+
+		echo $serv->worker_id;
 		echo "Timer[$interval] is call\n";
 	}
 
+
+	/**
+	 * 创建返回给客户的数据
+	 * @param $data
+	 * @param $type
+	 * 	100 为普通消息
+	 *  101 用户上线消息
+	 *  109 用户离线消息
+	 */
+	public function createRecMsg($data, $type, $from="", $to='') {
+		$tmp = array();
+		$tmp['type'] = $type;
+		$tmp['message'] = $data;
+		$tmp['from'] = $from;
+		$tmp['to'] = $to;
+
+		return json_encode($tmp);
+	}
+
+	/**
+	 * 解析命令
+	 * @param $serv
+	 * @param $fd
+	 * @param $from_id
+	 * @param $data
+	 * @return bool
+	 */
 	public function checkcmd($serv, $fd, $from_id, $data) {
-		preg_match("/(^cmd-[a-zA-Z]{1,20}:)(.*)/iUs", $data, $match);
+		preg_match("/^cmd-([a-zA-Z]{1,20}:)(.*)/", $data, $match);
 		if(empty($match) || !$match[1]) return false;
 
 		$cmd = trim(str_replace('cmd-', '', $match[1]),":");
-		$value = str_replace($match[1], '', $data);
+		$value = $match[2];
 
-		$cmdobj = new Command();
+		switch($cmd) {
+			case "getOnlineList":
+					$d['type'] = "pushOnline";
+					$d['sendto'] = $fd;
 
-		if(method_exists($cmdobj, $cmd) && in_array($cmd, array('name','close'))) {
-			$cmdobj->$cmd($serv,$fd,$from_id,$value);
-		} else {
-			$serv->send($fd,"Error: 未找到命令 ".$cmd."\n", $from_id);
+					$serv->task( json_encode($d) );
+				exit;
+				break;
 		}
+
+
+
+		$msg = $this->createRecMsg("Error: 未找到命令 ".$cmd, self::TYPE_SYSTEM_NOTICE);
+		$serv->send($fd, $this->frame($msg), $from_id);
 
 		exit;
 	}

@@ -1,0 +1,43 @@
+* {margin: 0; padding: 0;}
+body { background: #f6f6f6; overflow: hidden;}
+ul, ol {list-style: none;}
+.wrap {width: 1000px; height: 100%; margin: 0 auto; padding: 0;}
+.container {padding: 60px 0px; padding-top: 120px; position: relative;}
+
+.myinfo {position: absolute; top: 40px; height: 60px;}
+.myinfo .myavatar {float: left; background: rgba(255,255,255,0,8); border:1px solid #ddd; display: inline-block; border-radius: 4px;}
+.myinfo img {width: 58px; height: 58px; padding: 2px;border-radius: 4px; }
+.myinfo .myinfo_desc {float: left; margin-left: 10px; height: 60px;}
+.myinfo .myinfo_desc p { height: 29px; line-height: 29px; margin: 0; padding: 0;}
+
+.showmessagebox .title, .onlinelists .title {background: #f8f8f8; height: 40px; border-bottom: 1px solid #ddd; border-top-right-radius: 5px; border-top-left-radius: 5px;}
+
+.showmessagebox, .onlinelists {height: 100%;background: #fff; border: 1px solid #ddd; border-radius: 5px;}
+.showmessagebox .msgbox {background: rgba(255,255,255,.65)!important; overflow-y: auto; padding: 10px;box-sizing: inherit;}
+.showmessagebox .title h3 {font-size: 16px; margin: 0; padding-left: 10px;line-height: 40px; display: inline-block;}
+.showmessagebox {background: transparent; border-bottom-right-radius: 0; border-bottom-left-radius: 0; border-bottom: none;}
+.sendmsgbox {margin-top: -15px;}
+.sendmsgbox textarea {width: 85%; display: block; float: left; border-top-right-radius: 0; border-bottom-right-radius: 0;resize: none; border-top-left-radius: 0;}
+.sendmsgbox button {width: 15%; display: block; float: left; height: 74px; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius:0; border-left: none; background: #5b97c1; color:#fff;}
+.sendmsgbox button:hover, .sendmsgbox button:focus, .sendmsgbox button:active {background: #3c6fa1; color: #fff;}
+.sendmsgbox button span {display: block;}
+
+
+.onlinelists .title span {display: block; line-height: 40px; padding: 0 20px; }
+.onlinelists .onlinelists_inner {overflow-y: auto;}
+.onlinelists .onlinelists_inner li {padding-left: 80px; padding-top: 10px; padding-bottom: 10px; border-bottom: 1px dashed #eee;}
+.onlinelists .onlinelists_inner li > img {width: 40px; height: 40px; border-radius: 50%; margin-left: -60px; float: left;}
+.onlinelists .onlinelists_inner li p {line-height: 40px; margin: 0;}
+
+
+.wallpaper-ctrl {margin-top: 10px;}
+.bgAllImage {display: block; position: absolute; width: 100%; height: 100%; top: 0; left: 0; -webkit-animation-name: fadeInOut; -webkit-animation-timing-function: ease-out; -webkit-animation-duration: 2s; -webkit-animation-direction: alternate;  opacity:0;
+}
+.wallpaperImg {width: 19px; height: 19px; margin: 0 3px; overflow: hidden; background: url(../images/arrow.png) no-repeat; display: inline-block; text-decoration: none; }
+.pre {background-position: -2px -2px; }
+.next {background-position: -25px -2px; }
+.next:hover {background-position: -26px -42px; }
+.pre:hover {background-position: -3px -42px; }
+
+.loading {text-align: center; margin-top: 15px;}
+.loading img  {height: 30px; width: 30px;}

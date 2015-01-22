@@ -15,6 +15,7 @@ class Socket {
 			'max_request' => 10000,
 			'dispatch_mode' => 2,
 			'debug_mode'=> 0,
+			'daemonize' => true
 		);
 		$serv = new \swoole_server("0.0.0.0", 8808);
 		$serv->set($config);
