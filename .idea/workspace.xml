@@ -2,16 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8913814d-567e-4580-adbd-4cd92b810d49" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/static/css/style.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dictionaries/wuzhuo.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/core/Command.class.php" afterPath="$PROJECT_DIR$/server/core/Command.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/core/Handler.class.php" afterPath="$PROJECT_DIR$/server/core/Handler.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/core/Socket.class.php" afterPath="$PROJECT_DIR$/server/core/Socket.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/functions.php" afterPath="$PROJECT_DIR$/server/functions.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/static/js/ichat.js" afterPath="$PROJECT_DIR$/client/static/js/ichat.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/view/Index/index.html" afterPath="$PROJECT_DIR$/client/view/Index/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="iChatchat.iws" />
@@ -503,7 +493,13 @@
       <option name="project" value="LOCAL" />
       <updated>1421894003623</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="增加前端模块及前端框架">
+      <created>1421932155057</created>
+      <option name="number" value="00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1421932155057</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
