@@ -97,6 +97,9 @@ class DB {
 	 */
 	static public function insert($table, $data=array()) {
 		if(!$data || !is_array($data)) return false;
+
+		$data = self::create($table, $data);
+
 		$data = self::quote($data);
 
 		$keys = $vals = '';
@@ -158,6 +161,23 @@ class DB {
 
 		self::$sql = "DELETE FROM ".self::table($table)." where ". $condition. " limit ".$limit;
 		return self::exec();
+	}
+
+	public static function create($table,$data) {
+		$ret = self::fetch_all("show columns from %t", array($table));
+		$fields = array();
+		if($ret) {
+			foreach($ret as $key=>$v) {
+				$fields[] = $v['Field'];
+			}
+		}
+
+		foreach($data as $k=>$v) {
+			if(!in_array($k, $fields)) {
+				unset($data[$k]);
+			}
+		}
+		return $data;
 	}
 
 	/**

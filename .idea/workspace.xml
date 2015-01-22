@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8913814d-567e-4580-adbd-4cd92b810d49" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/haophp/core/DB.class.php" afterPath="$PROJECT_DIR$/client/haophp/core/DB.class.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/controller/Index.class.php" afterPath="$PROJECT_DIR$/client/controller/Index.class.php" />
     </list>
     <ignored path="iChatchat.iws" />
@@ -30,11 +31,24 @@
       <file leaf-file-name="Index.class.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/controller/Index.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.35265106" vertical-offset="959" max-vertical-offset="2160">
-              <caret line="83" column="28" selection-start-line="83" selection-start-column="28" selection-end-line="83" selection-end-column="28" />
+            <state vertical-scroll-proportion="0.46477133" vertical-offset="644" max-vertical-offset="2190">
+              <caret line="68" column="39" selection-start-line="68" selection-start-column="39" selection-end-line="68" selection-end-column="39" />
               <folding>
                 <element signature="e#6#86#0#PHP" expanded="true" />
                 <element signature="e#111#127#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DB.class.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/haophp/core/DB.class.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-8.458333" vertical-offset="1402" max-vertical-offset="4440">
+              <caret line="107" column="29" selection-start-line="107" selection-start-column="29" selection-end-line="107" selection-end-column="29" />
+              <folding>
+                <marker date="1421943052000" expanded="true" signature="2416:2478" placeholder="INSERT INTO ..." />
+                <marker date="1421943052000" expanded="true" signature="3536:3601" placeholder="DELETE FROM ..." />
               </folding>
             </state>
           </provider>
@@ -81,7 +95,6 @@
         <option value="$PROJECT_DIR$/server/core/App.class.php" />
         <option value="$PROJECT_DIR$/server/core/DB.class.php" />
         <option value="$PROJECT_DIR$/client/config/config.php" />
-        <option value="$PROJECT_DIR$/client/haophp/core/DB.class.php" />
         <option value="$PROJECT_DIR$/client/haophp/templeate/exception.php" />
         <option value="$PROJECT_DIR$/client/haophp/template/exception.php" />
         <option value="$PROJECT_DIR$/client/functions.php" />
@@ -102,6 +115,7 @@
         <option value="$PROJECT_DIR$/client/haophp/haophp.php" />
         <option value="$PROJECT_DIR$/client/index.php" />
         <option value="$PROJECT_DIR$/client/haophp/functions.php" />
+        <option value="$PROJECT_DIR$/client/haophp/core/DB.class.php" />
         <option value="$PROJECT_DIR$/client/controller/Index.class.php" />
       </list>
     </option>
@@ -222,7 +236,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="controller" />
+              <option name="myItemId" value="haophp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -577,13 +595,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/haophp/core/DB.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.17632553" vertical-offset="37" max-vertical-offset="4140">
-          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/haophp/core/Router.class.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.31442663" vertical-offset="0" max-vertical-offset="811">
@@ -727,10 +738,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/client/haophp/core/DB.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.458333" vertical-offset="1402" max-vertical-offset="4440">
+          <caret line="107" column="29" selection-start-line="107" selection-start-column="29" selection-end-line="107" selection-end-column="29" />
+          <folding>
+            <marker date="1421943052000" expanded="true" signature="2416:2478" placeholder="INSERT INTO ..." />
+            <marker date="1421943052000" expanded="true" signature="3536:3601" placeholder="DELETE FROM ..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/client/controller/Index.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.35265106" vertical-offset="959" max-vertical-offset="2160">
-          <caret line="83" column="28" selection-start-line="83" selection-start-column="28" selection-end-line="83" selection-end-column="28" />
+        <state vertical-scroll-proportion="0.46477133" vertical-offset="644" max-vertical-offset="2190">
+          <caret line="68" column="39" selection-start-line="68" selection-start-column="39" selection-end-line="68" selection-end-column="39" />
           <folding>
             <element signature="e#6#86#0#PHP" expanded="true" />
             <element signature="e#111#127#0#PHP" expanded="true" />

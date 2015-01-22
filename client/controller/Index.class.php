@@ -79,10 +79,12 @@ class Index extends Controller {
             session('access_token',$params["access_token"]);
 
             $this->get_openid();
+            $data = $this->get_user_info();
+            $data['openid'] = session('openid');
 
-            $arr = $this->get_user_info();
-            dump(session());
-            dump($arr);
+            $id = DB::insert('member', $data);
+            dump($id);
+
 
         } else {
             echo("The state does not match. You may be a victim of CSRF.");
