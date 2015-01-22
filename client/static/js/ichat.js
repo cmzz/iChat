@@ -45,6 +45,7 @@
         'online_selecter' : "",
         'online_num' : ".online_num",
         'onelin_loading': '.loading',
+        'openid': "<?php echo session('openid'); ?>",
     }
 
     $.iChat = {

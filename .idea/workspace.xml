@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8913814d-567e-4580-adbd-4cd92b810d49" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/haophp/core/Controller.class.php" afterPath="$PROJECT_DIR$/client/haophp/core/Controller.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/haophp/functions.php" afterPath="$PROJECT_DIR$/client/haophp/functions.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/static/js/ichat.js" afterPath="$PROJECT_DIR$/client/static/js/ichat.js" />
     </list>
     <ignored path="iChatchat.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -53,21 +52,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="functions.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="functions.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/haophp/functions.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6291718" vertical-offset="541" max-vertical-offset="1350">
-              <caret line="70" column="20" selection-start-line="70" selection-start-column="20" selection-end-line="70" selection-end-column="20" />
+            <state vertical-scroll-proportion="-29.958334" vertical-offset="466" max-vertical-offset="1350">
+              <caret line="79" column="19" selection-start-line="79" selection-start-column="19" selection-end-line="79" selection-end-column="19" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ichat.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ichat.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/static/js/ichat.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="646" max-vertical-offset="4305">
-              <caret line="50" column="16" selection-start-line="50" selection-start-column="16" selection-end-line="50" selection-end-column="16" />
+            <state vertical-scroll-proportion="0.8463385" vertical-offset="0" max-vertical-offset="4320">
+              <caret line="47" column="53" selection-start-line="47" selection-start-column="53" selection-end-line="47" selection-end-column="53" />
               <folding />
             </state>
           </provider>
@@ -139,10 +138,10 @@
         <option value="$PROJECT_DIR$/client/haophp/core/DB.class.php" />
         <option value="$PROJECT_DIR$/client/index.php" />
         <option value="$PROJECT_DIR$/client/view/Index/index.html" />
-        <option value="$PROJECT_DIR$/client/static/js/ichat.js" />
         <option value="$PROJECT_DIR$/client/controller/Index.class.php" />
         <option value="$PROJECT_DIR$/client/haophp/core/Controller.class.php" />
         <option value="$PROJECT_DIR$/client/haophp/functions.php" />
+        <option value="$PROJECT_DIR$/client/static/js/ichat.js" />
       </list>
     </option>
   </component>
@@ -833,14 +832,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/static/js/ichat.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="646" max-vertical-offset="4305">
-          <caret line="50" column="16" selection-start-line="50" selection-start-column="16" selection-end-line="50" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/controller/Index.class.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-18.708334" vertical-offset="241" max-vertical-offset="2580">
@@ -864,8 +855,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/client/haophp/functions.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6291718" vertical-offset="541" max-vertical-offset="1350">
-          <caret line="70" column="20" selection-start-line="70" selection-start-column="20" selection-end-line="70" selection-end-column="20" />
+        <state vertical-scroll-proportion="-29.958334" vertical-offset="466" max-vertical-offset="1350">
+          <caret line="79" column="19" selection-start-line="79" selection-start-column="19" selection-end-line="79" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/static/js/ichat.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8463385" vertical-offset="0" max-vertical-offset="4320">
+          <caret line="47" column="53" selection-start-line="47" selection-start-column="53" selection-end-line="47" selection-end-column="53" />
           <folding />
         </state>
       </provider>
