@@ -44,7 +44,40 @@ class Index extends Controller {
      * 注册
      */
     public function reg () {
+        $api = Config::get('global','qqconnect');
+        if($_REQUEST['state'] == session('state')) //csrf
+        {
+            $callback = url('qqlogin','','',1);
+            $token_url = "https://graph.qq.com/oauth2.0/token?grant_type=authorization_code&"
+                . "client_id=" . $api["appid"]. "&redirect_uri=" . urlencode($callback)
+                . "&client_secret=" . $api["appkey"]. "&code=" . $_REQUEST["code"];
 
+            $response = file_get_contents($token_url);
+            if (strpos($response, "callback") !== false)
+            {
+                $lpos = strpos($response, "(");
+                $rpos = strrpos($response, ")");
+                $response  = substr($response, $lpos + 1, $rpos - $lpos -1);
+                $msg = json_decode($response);
+                if (isset($msg->error))
+                {
+                    echo "<h3>error:</h3>" . $msg->error;
+                    echo "<h3>msg  :</h3>" . $msg->error_description;
+                    exit;
+                }
+            }
+
+            $params = array();
+            parse_str($response, $params);
+
+            //debug
+            print_r($params);
+
+            //set access token to session
+            $_SESSION["access_token"] = $params["access_token"];
+        } else {
+            echo("The state does not match. You may be a victim of CSRF.");
+        }
     }
 
     /**
@@ -57,6 +90,8 @@ class Index extends Controller {
     protected function getQqLoginUrl($appid, $callback)
     {
         $state = md5(uniqid(rand(), TRUE)); //CSRF protection
+        session('state', $state);
+
         $login_url = "https://graph.qq.com/oauth2.0/authorize?response_type=code&client_id="
             . $appid . "&redirect_uri=" . urlencode($callback)
             . "&state=" . $state
