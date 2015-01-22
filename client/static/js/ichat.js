@@ -45,7 +45,7 @@
         'online_selecter' : "",
         'online_num' : ".online_num",
         'onelin_loading': '.loading',
-        'openid': "<?php echo session('openid'); ?>",
+        'openid': "",
     }
 
     $.iChat = {
@@ -68,7 +68,7 @@
                 $.iChat.showWelcomeMessage();
                 $.iChat.opt.heartbeat_timer = setInterval( function(){keepalive($.iChat.opt.ws)}, 180000 );
                 $.iChat.send("cmd-getOnlineList:getOnlineList",true);
-                $.iChat.send("cmd-login:<?php echo ('openid'); ?>",true);
+                $.iChat.send("cmd-login:"+ $.iChat.opt.openid,true);
             }
 
             this.opt.ws.onmessage = this.receive;

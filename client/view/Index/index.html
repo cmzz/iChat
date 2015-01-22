@@ -83,7 +83,7 @@
 <script type="text/javascript">
     var UI = {}
     $(function () {
-        $.iChat.init()
+        $.iChat.init({'openid':"<?php echo session('openid'); ?>"});
 
         setUI();
         setbgimg();
