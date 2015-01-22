@@ -16,7 +16,7 @@ function dump($obj) {
 }
 
 function session($k,$v="") {
-    if(!$k) return false;
+    if(!$k) return $_SESSION;
     if(!$v) {
         $ret = $_SESSION[$k];
         return $ret;
