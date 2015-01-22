@@ -24,8 +24,6 @@ class Index extends Controller {
 //            $this->redirect('login');
 //        }
 
-        dump(session());
-
         include template();
     }
 
