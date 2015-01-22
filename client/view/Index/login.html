@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>iChat</title>
+
+    <!-- Bootstrap -->
+    <link href="<?php echo _STATIC; ?>/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <style type="text/css">
+        body {background: #f6f6f6;}
+        #mq_login_title {
+            position: relative;
+            margin: 82px auto 40px;
+            text-align: center;
+            font-size: 30px;
+            width: 500px;
+        }
+        #loginbtn {margin: 0 auto; width: 140px; text-align: center; margin-top:160px;}
+        #loginbtn a {display: block; height: 140px;}
+        #loginbtn p {display: block; height: 30px; line-height: 30px; border-radius: 15px; background: #dfdfdf}
+    </style>
+</head>
+<body>
+
+<div id="mq_login_title">QChat</div>
+
+<div id="loginbtn">
+    <a  href="<?php echo $loginurl; ?>">
+        <img src="<?php echo _STATIC; ?>/images/qqlogo_gray.png"/>
+    </a>
+    <p>使用QQ登陆</p>
+</div>
+
+<script src="<?php echo _STATIC; ?>/js/jquery.min.js"></script>
+<script src="<?php echo _STATIC; ?>/dist/js/bootstrap.min.js"></script>
+<script>
+    $(function(){
+        $("#loginbtn img").hover(function(){
+                var e = $(this)
+                e.stop().animate({marginTop:'-16px'},250,function(){
+                    e.animate({marginTop:'-10px'},250);
+                });
+            },function(){
+                var e = $(this)
+                e.stop().animate({marginTop:"6px"},250,function(){
+                    e.animate({marginTop:"0px"},250);
+                });
+
+            }
+        )
+    })
+</script>
+</body>
+</html>

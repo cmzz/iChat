@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>iChat</title>
+
+    <!-- Bootstrap -->
+    <link href="<?php echo _STATIC; ?>/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <style type="text/css">
+        * {margin: 0; padding: 0;}
+        body { background: #f6f6f6;}
+        ul, ol {list-style: none;}
+        .container {padding: 40px 15px;}
+        .showmessagebox, .onlinelists {min-height: 500px;background: #fff; border: 1px solid #ddd; border-radius: 5px;padding: 10px 20px;}
+        .showmessagebox .title, .onlinelists .title {background: #f8f8f8; height: 40px; margin-top: -10px; margin-left: -20px; margin-right: -20px; border-bottom: 1px solid #ddd; border-top-right-radius: 5px; border-top-left-radius: 5px;}
+        .showmessagebox .title h3 {font-size: 16px; margin: 0; padding-left: 20px;line-height: 40px; display: inline-block;}
+
+
+
+        .onlinelists .title span {display: block; line-height: 40px; padding: 0 20px; }
+
+        .onlinelists {min-height: 589px;}
+        .onlinelists li {padding-left: 60px; padding-top: 10px; padding-bottom: 10px; border-bottom: 1px dashed #eee;}
+        .onlinelists li > img {width: 40px; height: 40px; border-radius: 50%; margin-left: -60px; float: left;}
+        .onlinelists li p {line-height: 40px; margin: 0;}
+
+        .sendmsgbox textarea {width: 90%; display: block; float: left; border-top-right-radius: 0; border-bottom-right-radius: 0;resize: none;}
+        .sendmsgbox button {width: 10%; display: block; float: left; height: 74px; border-top-left-radius: 0; border-bottom-left-radius: 0; margin-left: -1px;}
+        .sendmsgbox button span {display: block;}
+    </style>
+</head>
+<body>
+
+<div class="wrap container">
+    <div class="col-sm-3">
+        <div class="onlinelists">
+            <div class="title"><span>在线用户 <em>56人</em></span></div>
+            <ul>
+                <li>
+                    <img class="avatar" src="http://tp3.sinaimg.cn/1221788390/180/1289279591/0">
+                    <p class="username">用户名</p>
+                </li>
+                <li>
+                    <img class="avatar" src="http://tp3.sinaimg.cn/1221788390/180/1289279591/0">
+                    <p class="username">用户名</p>
+                </li>
+                <li>
+                    <img class="avatar" src="http://tp3.sinaimg.cn/1221788390/180/1289279591/0">
+                    <p class="username">用户名</p>
+                </li>
+                <li>
+                    <img class="avatar" src="http://tp3.sinaimg.cn/1221788390/180/1289279591/0">
+                    <p class="username">用户名</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="col-sm-9">
+        <div class="showmessagebox">
+            <div class="title">
+                <h3>QChat <small>欢迎您～～</small></h3>
+            </div>
+            <div id="msgbox">
+
+            </div>
+        </div>
+
+        <div class="sendmsgbox">
+            <form class="" role="form">
+                <div class="form-group">
+                    <textarea class="form-control" rows="3" id="inputbox" ></textarea>
+                </div>
+
+                <button type="button" class="btn btn-default" id="btn-send"><span>Enter</span> <span>发 送</span></button>
+                <div class="clearfix cl"></div>
+            </form>
+        </div>
+
+    </div>
+
+</div>
+
+<script src="<?php echo _STATIC; ?>/js/jquery.min.js"></script>
+<script src="<?php echo _STATIC; ?>/dist/js/bootstrap.min.js"></script>
+
+<script src="<?php echo _STATIC; ?>/js/reconnecting-websocket.js" /></script>
+<script src="<?php echo _STATIC; ?>/js/ichat.js" /></script>
+<script type="text/javascript">
+    $(function () {
+        $.iCaht.init()
+    })
+</script>
+</body>
+</html>

@@ -37,7 +37,7 @@
         "button"    : "#btn-send",
         "showbox"   : "#msgbox",
         "inputbox"  : "#inputbox",
-        "server"    : "ws://192.168.2.129:9501",
+        "server"    : "ws://192.168.2.129:8808",
         'last_health':0,
         'heartbeat_timer': 0
 

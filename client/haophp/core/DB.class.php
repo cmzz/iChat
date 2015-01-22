@@ -4,21 +4,24 @@ namespace core;
 use core\Config;
 
 class DB {
-	public $pre;
-	public $conn;
-	public $errno;
-	public $error;
-	public $sql;
-	public $lastSql;
+	static public $pre;
+	static public $conn;
+	static public $errno;
+	static public $error;
+	static public $sql;
+	static public $lastSql;
 
 
-	function __construct(){
+	static public function init(){
 		$config = Config::get('database');
-		$this->pre = $config['db_pre'];
+		if(!$config) return false;
+
+		self::$pre = $config['db_pre'];
 
 		if(!$config['db_host'] || !$config['db_name'] || !$config['db_user']) {
             throw new \Exception("请先设置数据库连接参数");  		
 		}
+
 
 		$mysqli = mysqli_init();
 
@@ -32,21 +35,21 @@ class DB {
 			exit;
 		}
 
-		$this->conn = $mysqli;
+		self::$conn = $mysqli;
 	}
 
 	/**
 	 * 执行
 	 * @return [type] [description]
 	 */
-	public function exec() {
-		$result = $this->conn->query($this->sql);
-		if($this->conn->errno) {
-			throw new \Exception($this->conn->error);			
+	static public function exec() {
+		$result = self::$conn->query(self::$sql);
+		if(self::$conn->errno) {
+			throw new \Exception(self::$conn->error);			
 		}
 
-		$this->lastSql = $this->sql;
-		$this->sql = '';
+		self::$lastSql = self::$sql;
+		self::$sql = '';
 
 		return $result;
 	}
@@ -57,9 +60,9 @@ class DB {
 	 * @param  array  $params [description]
 	 * @return [type]         [description]
 	 */
-	public function query($sql, $params=array()) {
-		$this->sql = $this->format($sql,$params);
-		$result = $this->exec();
+	static public function query($sql, $params=array()) {
+		self::$sql = self::format($sql,$params);
+		$result = self::exec();
 		if(!$result) {
 			return false;
 		}
@@ -70,8 +73,8 @@ class DB {
 	 * 获取第一条记录
 	 * @return [type] [description]
 	 */
-	public function fetch_first($sql,$params=array()) {
-		$result = $this->query($sql,$params);
+	static public function fetch_first($sql,$params=array()) {
+		$result = self::query($sql,$params);
 		$tmp = $result->fetch_array(MYSQLI_ASSOC);
 		return $tmp;
 	}
@@ -80,8 +83,8 @@ class DB {
 	 * 获取记录
 	 * @return [type] [description]
 	 */
-	public function fetch_all($sql,$params=array()) {
-		$result = $this->query($sql,$params);
+	static public function fetch_all($sql,$params=array()) {
+		$result = self::query($sql,$params);
 		for ($res = array(); $tmp = $result->fetch_array(MYSQLI_ASSOC);) $res[] = $tmp;
 		return $res;
 	}
@@ -92,10 +95,9 @@ class DB {
 	 * @param  array  $data  [description]
 	 * @return [type]        [description]
 	 */
-	public function insert($table, $data=array()) {
+	static public function insert($table, $data=array()) {
 		if(!$data || !is_array($data)) return false;
-		$data = $this->create($table, $data);
-		$data = $this->quote($data);
+		$data = self::quote($data);
 
 		$keys = $vals = '';
 		foreach ($data as $k => $v) {
@@ -108,11 +110,11 @@ class DB {
 		$keys = implode(' , ', $keys);
 		$vals = implode(' , ', $vals);
 
-		$this->sql = "INSERT INTO ".$this->table($table)." ({$keys}) VALUES ({$vals}) ";
+		self::$sql = "INSERT INTO ".self::table($table)." ({$keys}) VALUES ({$vals}) ";
 
-		$result = $this->exec();
+		$result = self::exec();
 		if($result) {
-			return $this->conn->insert_id;
+			return self::$conn->insert_id;
 		} else {
 			return false;
 		}
@@ -125,25 +127,23 @@ class DB {
 	 * @param  boolean $replace [description]
 	 * @return [type]           [description]
 	 */
-	public function update($table, $data=array(), $condition="") {
+	static public function update($table, $data=array(), $condition="") {
 		if(!$table || !$condition || !$data) return false;
-		$data = $this->create($table, $data);
-
 		if(is_array($condition)) {
 
 		} else {
 			$where = $condition;
 		}
 
-		$data = $this->quote($data);
+		$data = self::quote($data);
 		foreach ($data as $k => $v) {
 			$tmp[] = " $k = $v ";
 		}
 		$vals = implode(',', $tmp);
 
-		$this->sql = "UPDATE ".$this->table($table)." SET  {$vals} WHERE {$where}";
+		self::$sql = "UPDATE ".self::table($table)." SET  {$vals} WHERE {$where}";
 		
-		return $result = $this->exec();
+		return $result = self::exec();
 	}
 
 	/**
@@ -153,9 +153,11 @@ class DB {
 	 * @param  integer $limit     [description]
 	 * @return [type]             [description]
 	 */
-	public function delete($table, $condition) {
-		$this->sql = "DELETE FROM ".$this->table($table)." where ". $condition;
-		return $this->exec();
+	static public function delete($table, $condition, $limit=0) {
+		if($limit) $limit = intval($limit);
+
+		self::$sql = "DELETE FROM ".self::table($table)." where ". $condition. " limit ".$limit;
+		return self::exec();
 	}
 
 	/**
@@ -164,7 +166,7 @@ class DB {
 	 * @param  [type] $args [description]
 	 * @return [type]       [description]
 	 */
-	public function format($sql, $args) {
+	public static function format($sql, $args) {
 		// 检查sql语句中的模式
 		$count = substr_count($sql, "%");
 		if(!$count) {
@@ -187,9 +189,9 @@ class DB {
 			if($char == "%") {
 				$next = $sql{$i + 1};
 				if ($next == 't') {
-					$ret .= $this->table($args[$find]);
+					$ret .= self::table($args[$find]);
 				} elseif ($next == 's') {
-					$ret .= $this->quote(is_array($args[$find]) ? serialize($args[$find]) : (string) $args[$find]);
+					$ret .= self::quote(is_array($args[$find]) ? serialize($args[$find]) : (string) $args[$find]);
 				} elseif ($next == 'f') {
 					$ret .= sprintf('%F', $args[$find]);
 				} elseif ($next == 'd') {
@@ -198,12 +200,12 @@ class DB {
 					$ret .= $args[$find];
 				} elseif ($next == 'n') {
 					if (!empty($args[$find])) {
-						$ret .= is_array($args[$find]) ? implode(',', $this->quote($args[$find])) : $this->quote($args[$find]);
+						$ret .= is_array($args[$find]) ? implode(',', self::quote($args[$find])) : self::quote($args[$find]);
 					} else {
 						$ret .= '0';
 					}
 				} else {
-					$ret .= $this->quote($args[$find]);
+					$ret .= self::quote($args[$find]);
 				}
 
 				$i++;
@@ -223,28 +225,8 @@ class DB {
 	 * @param  [type] $table [description]
 	 * @return [type]        [description]
 	 */
-	public function table($table) {
-		return $this->pre.$table;
-	}
-
-	public function create($table,$data) {
-		$table = $this->table($table);
-
-		$ret = $this->fetch_all("show columns from %t", array($table));
-		$fields = array();
-		if($ret) {
-			foreach($ret as $key=>$v) {
-				$fields[] = $v['Field'];
-			}
-
-			foreach($data as $k=>$v) {
-				if(!in_array($k, $fields)) {
-					unset($data[$k]);
-				}
-			}
-		}
-
-		return $data;
+	static public function table($table) {
+		return self::$pre.$table;
 	}
 
 	/**
@@ -253,9 +235,10 @@ class DB {
 	 * @param  boolean $noarray [description]
 	 * @return [type]           [description]
 	 */
-	public function quote($str, $noarray = false) {
+	public static function quote($str, $noarray = false) {
+
 		if (is_string($str))
-			return '\'' . mysqli_real_escape_string($this->conn, $str) . '\'';
+			return '\'' . mysqli_real_escape_string(self::$conn, $str) . '\'';
 
 		if (is_int($str) or is_float($str))
 			return '\'' . $str . '\'';
@@ -263,7 +246,7 @@ class DB {
 		if (is_array($str)) {
 			if($noarray === false) {
 				foreach ($str as &$v) {
-					$v = $this->quote($v, true);
+					$v = self::quote($v, true);
 				}
 				return $str;
 			} else {
@@ -280,7 +263,7 @@ class DB {
 	/**
 	 * 计时
 	 */
-	public function timeuse() {
+	static public function timeuse() {
 		$t = explode(',', microtime());
 		$t = $t[0] + $t[1];
 		return $t;

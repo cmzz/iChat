@@ -16,8 +16,7 @@ class Socket {
 			'dispatch_mode' => 2,
 			'debug_mode'=> 0,
 		);
-		$serv = new \swoole_server("0.0.0.0", 9501);
-		// $serv->addlistener('0.0.0.0', 9502);
+		$serv = new \swoole_server("0.0.0.0", 8808);
 		$serv->set($config);
 		$serv->config = $config;
 		$handler = new Handler();
