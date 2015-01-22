@@ -10,6 +10,7 @@
 namespace Controller;
 use core\Config;
 use core\Controller;
+use core\DB;
 
 class Index extends Controller {
 
@@ -51,6 +52,7 @@ class Index extends Controller {
      * QQ登陆回调函数
      */
     public function qqlogin() {
+
         $api = Config::get('global','qqconnect');
         if($_REQUEST['state'] == session('state')) //csrf
         {
@@ -82,10 +84,29 @@ class Index extends Controller {
             $data = $this->get_user_info();
             $data['openid'] = session('openid');
 
-            print_r($data);
-//            $id = DB::insert('member', $data);
-//            dump($id);
+            if($info = DB::fetch_first("select * from %t where openid=%s",array('member',$data['openid']))) {
+                $id = $info['id'];
+            } else {
+                $data['figureurl'] = $data['figureurl_1'];
+                $id = DB::insert('member', $data);
+                $info = $data;
+            }
 
+            if($id) {
+                $ol['nickname'] = $info['nickname'];
+                $ol['uid'] = $id;
+                $ol['lasttime'] = TIME;
+
+                $oid = DB::insert('online',$ol);
+                if($oid) {
+                    session('uid',$id);
+                    session('info', $info);
+
+                    $this->redirect('index','openid='.$info['openid']);
+                }
+            }
+
+            $this->redirect('login');
 
         } else {
             echo("The state does not match. You may be a victim of CSRF.");
