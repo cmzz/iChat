@@ -68,7 +68,7 @@ function url($url, $vars="", $suffix=".html", $showdomain=false, $redirect=false
     $url = APP_ROOT.str_replace('//','/','index.php/'.$controller.'/'.$action);
     if($vars) {
         $vars = str_replace(array('=','&'),'/',$vars);
-        $url .= $vars;
+        $url .= '/'.$vars;
     }
 
     $url .= $suffix;

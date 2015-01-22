@@ -26,7 +26,7 @@ class Controller {
         $url = APP_ROOT.str_replace('//','/','index.php/'.$controller.'/'.$action);
         if($vars) {
             $vars = str_replace(array('=','&'),'/',$vars);
-            $url .= $vars;
+            $url .= '/'.$vars;
         }
 
         header("location:".$url);
