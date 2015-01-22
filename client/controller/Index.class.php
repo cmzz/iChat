@@ -82,8 +82,9 @@ class Index extends Controller {
             $data = $this->get_user_info();
             $data['openid'] = session('openid');
 
-            $id = DB::insert('member', $data);
-            dump($id);
+            print_r($data);
+//            $id = DB::insert('member', $data);
+//            dump($id);
 
 
         } else {

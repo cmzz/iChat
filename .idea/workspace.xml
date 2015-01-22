@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8913814d-567e-4580-adbd-4cd92b810d49" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/haophp/core/DB.class.php" afterPath="$PROJECT_DIR$/client/haophp/core/DB.class.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/controller/Index.class.php" afterPath="$PROJECT_DIR$/client/controller/Index.class.php" />
     </list>
     <ignored path="iChatchat.iws" />
@@ -31,8 +30,8 @@
       <file leaf-file-name="Index.class.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/controller/Index.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.46477133" vertical-offset="644" max-vertical-offset="2190">
-              <caret line="68" column="39" selection-start-line="68" selection-start-column="39" selection-end-line="68" selection-end-column="39" />
+            <state vertical-scroll-proportion="0.76143384" vertical-offset="644" max-vertical-offset="2205">
+              <caret line="84" column="27" selection-start-line="84" selection-start-column="27" selection-end-line="84" selection-end-column="27" />
               <folding>
                 <element signature="e#6#86#0#PHP" expanded="true" />
                 <element signature="e#111#127#0#PHP" expanded="true" />
@@ -751,8 +750,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/client/controller/Index.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.46477133" vertical-offset="644" max-vertical-offset="2190">
-          <caret line="68" column="39" selection-start-line="68" selection-start-column="39" selection-end-line="68" selection-end-column="39" />
+        <state vertical-scroll-proportion="0.76143384" vertical-offset="644" max-vertical-offset="2205">
+          <caret line="84" column="27" selection-start-line="84" selection-start-column="27" selection-end-line="84" selection-end-column="27" />
           <folding>
             <element signature="e#6#86#0#PHP" expanded="true" />
             <element signature="e#111#127#0#PHP" expanded="true" />
