@@ -81,7 +81,7 @@ class Index extends Controller {
             $this->get_openid();
 
             $arr = $this->get_user_info();
-
+            dump(session());
             dump($arr);
 
         } else {
