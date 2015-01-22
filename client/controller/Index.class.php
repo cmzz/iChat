@@ -60,8 +60,7 @@ class Index extends Controller {
                 . "&client_secret=" . $api["appkey"]. "&code=" . $_REQUEST["code"];
 
             $response = file_get_contents($token_url);
-            if (strpos($response, "callback") !== false)
-            {
+            if (strpos($response, "callback") !== false) {
                 $lpos = strpos($response, "(");
                 $rpos = strrpos($response, ")");
                 $response  = substr($response, $lpos + 1, $rpos - $lpos -1);
