@@ -25,7 +25,7 @@ class Login extends Controller {
     }
 
     public function index() {
-        if(isset($_POST)) {
+        if(isset($_POST) && $_POST) {
             $post = $_POST;
 
             if($info = DB::fetch_first("select * from %t where email = %s", array('member',$post['email']))) {
