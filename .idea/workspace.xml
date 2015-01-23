@@ -30,14 +30,14 @@
       <file leaf-file-name="Login.class.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/controller/Login.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.12978986" vertical-offset="210" max-vertical-offset="3300">
-              <caret line="26" column="29" selection-start-line="26" selection-start-column="29" selection-end-line="26" selection-end-column="29" />
+            <state vertical-scroll-proportion="0.48207664" vertical-offset="210" max-vertical-offset="3330">
+              <caret line="45" column="43" selection-start-line="45" selection-start-column="43" selection-end-line="45" selection-end-column="43" />
               <folding>
                 <element signature="e#111#127#0#PHP" expanded="true" />
-                <marker date="1422011642000" expanded="true" signature="561:594" placeholder="select * fro..." />
-                <marker date="1422011642000" expanded="true" signature="1903:1932" placeholder="select * fro..." />
-                <marker date="1422011642000" expanded="true" signature="2336:2367" placeholder="select * fro..." />
-                <marker date="1422011642000" expanded="true" signature="4260:4292" placeholder="select * fro..." />
+                <marker date="1422011726000" expanded="true" signature="561:594" placeholder="select * fro..." />
+                <marker date="1422011726000" expanded="true" signature="1972:2001" placeholder="select * fro..." />
+                <marker date="1422011726000" expanded="true" signature="2405:2436" placeholder="select * fro..." />
+                <marker date="1422011726000" expanded="true" signature="4329:4361" placeholder="select * fro..." />
               </folding>
             </state>
           </provider>
@@ -884,14 +884,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/client/controller/Login.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.12978986" vertical-offset="210" max-vertical-offset="3300">
-          <caret line="26" column="29" selection-start-line="26" selection-start-column="29" selection-end-line="26" selection-end-column="29" />
+        <state vertical-scroll-proportion="0.48207664" vertical-offset="210" max-vertical-offset="3330">
+          <caret line="45" column="43" selection-start-line="45" selection-start-column="43" selection-end-line="45" selection-end-column="43" />
           <folding>
             <element signature="e#111#127#0#PHP" expanded="true" />
-            <marker date="1422011642000" expanded="true" signature="561:594" placeholder="select * fro..." />
-            <marker date="1422011642000" expanded="true" signature="1903:1932" placeholder="select * fro..." />
-            <marker date="1422011642000" expanded="true" signature="2336:2367" placeholder="select * fro..." />
-            <marker date="1422011642000" expanded="true" signature="4260:4292" placeholder="select * fro..." />
+            <marker date="1422011726000" expanded="true" signature="561:594" placeholder="select * fro..." />
+            <marker date="1422011726000" expanded="true" signature="1972:2001" placeholder="select * fro..." />
+            <marker date="1422011726000" expanded="true" signature="2405:2436" placeholder="select * fro..." />
+            <marker date="1422011726000" expanded="true" signature="4329:4361" placeholder="select * fro..." />
           </folding>
         </state>
       </provider>

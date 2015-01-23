@@ -36,12 +36,14 @@ class Login extends Controller {
                     $this->redirect('Chat/index');
 
                 } else {
-                    exit('密码错误');
+                    echo '密码错误';
                 }
             } else {
-                exit('用户不存在');
+                echo '用户不存在';
             }
 
+            unset($_POST);
+            $this->redirect('Login/index');
             exit;
         }
 
