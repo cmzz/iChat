@@ -45,6 +45,8 @@ class Login extends Controller {
             exit;
         }
 
+        unset($_POST);
+
         $api = Config::get('global','qqconnect');
 
         $qqcallback = url('Login/qqlogin','','',1);
