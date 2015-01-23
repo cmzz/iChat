@@ -20,14 +20,14 @@ class Chat extends Controller {
     }
 
     public function index() {
-        DB::fetch_first('select * from %t where openid = %s',array('online', session('openid')));
-        echo DB::$lastSql;
+        $info = DB::fetch_first('select * from %t where openid = %s',array('online', session('openid')));
 
-//        if(!DB::fetch_first('select * from %t where openid = %s',array('online', session('openid')))) {
-//            $this->redirect('Login/index');
-//        }
+        if(!$info['uid']) {
+            $this->redirect('Login/index');
+        }
+        $member = DB::fetch_first("select * from %t where id = %d", array('member',$info['uid']));
 
-
+        $info['avatar'] = $member['figureurl'] ? $member['figureurl'] : 'http://tp3.sinaimg.cn/1221788390/180/1289279591/0';
 
         include template();
     }

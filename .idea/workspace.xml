@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="8913814d-567e-4580-adbd-4cd92b810d49" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/controller/Chat.class.php" afterPath="$PROJECT_DIR$/client/controller/Chat.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/view/Chat/index.html" afterPath="$PROJECT_DIR$/client/view/Chat/index.html" />
     </list>
     <ignored path="iChatchat.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -43,15 +44,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Chat.class.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Chat.class.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/controller/Chat.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.33374536" vertical-offset="0" max-vertical-offset="809">
-              <caret line="25" column="0" selection-start-line="25" selection-start-column="2" selection-end-line="27" selection-end-column="11" />
+            <state vertical-scroll-proportion="-13.75" vertical-offset="0" max-vertical-offset="675">
+              <caret line="29" column="17" selection-start-line="29" selection-start-column="17" selection-end-line="29" selection-end-column="17" />
               <folding>
-                <marker date="1422012064000" expanded="true" signature="326:360" placeholder="select * fro..." />
-                <marker date="1422012064000" expanded="true" signature="458:492" placeholder="select * fro..." />
+                <marker date="1422012437000" expanded="true" signature="334:368" placeholder="select * fro..." />
+                <marker date="1422012437000" expanded="true" signature="525:555" placeholder="select * fro..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/client/view/Chat/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.3893696" vertical-offset="60" max-vertical-offset="2055">
+              <caret line="25" column="91" selection-start-line="25" selection-start-column="91" selection-end-line="25" selection-end-column="91" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -184,6 +195,7 @@
         <option value="$PROJECT_DIR$/server/core/Handler.class.php" />
         <option value="$PROJECT_DIR$/client/controller/Login.class.php" />
         <option value="$PROJECT_DIR$/client/controller/Chat.class.php" />
+        <option value="$PROJECT_DIR$/client/view/Chat/index.html" />
       </list>
     </option>
   </component>
@@ -192,8 +204,8 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="448" />
-    <option name="y" value="28" />
+    <option name="x" value="306" />
+    <option name="y" value="23" />
     <option name="width" value="1400" />
     <option name="height" value="953" />
   </component>
@@ -299,7 +311,29 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
+              <option name="myItemId" value="view" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="iChatchat" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="iChatchat" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="client" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="view" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Chat" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -443,7 +477,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="448" y="28" width="1400" height="953" extended-state="0" />
+    <frame x="306" y="23" width="1400" height="953" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -889,12 +923,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/client/controller/Chat.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33374536" vertical-offset="0" max-vertical-offset="809">
-          <caret line="25" column="0" selection-start-line="25" selection-start-column="2" selection-end-line="27" selection-end-column="11" />
+        <state vertical-scroll-proportion="-13.75" vertical-offset="0" max-vertical-offset="675">
+          <caret line="29" column="17" selection-start-line="29" selection-start-column="17" selection-end-line="29" selection-end-column="17" />
           <folding>
-            <marker date="1422012064000" expanded="true" signature="326:360" placeholder="select * fro..." />
-            <marker date="1422012064000" expanded="true" signature="458:492" placeholder="select * fro..." />
+            <marker date="1422012437000" expanded="true" signature="334:368" placeholder="select * fro..." />
+            <marker date="1422012437000" expanded="true" signature="525:555" placeholder="select * fro..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/view/Chat/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3893696" vertical-offset="60" max-vertical-offset="2055">
+          <caret line="25" column="91" selection-start-line="25" selection-start-column="91" selection-end-line="25" selection-end-column="91" />
+          <folding />
         </state>
       </provider>
     </entry>
