@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8913814d-567e-4580-adbd-4cd92b810d49" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/controller/Login.class.php" afterPath="$PROJECT_DIR$/client/controller/Login.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/controller/Chat.class.php" afterPath="$PROJECT_DIR$/client/controller/Chat.class.php" />
     </list>
     <ignored path="iChatchat.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -27,11 +27,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Login.class.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Login.class.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/controller/Login.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6118665" vertical-offset="120" max-vertical-offset="3330">
-              <caret line="46" column="17" selection-start-line="46" selection-start-column="17" selection-end-line="46" selection-end-column="17" />
+            <state vertical-scroll-proportion="-27.5" vertical-offset="165" max-vertical-offset="3330">
+              <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
               <folding>
                 <element signature="e#111#127#0#PHP" expanded="true" />
                 <marker date="1422011959000" expanded="true" signature="571:604" placeholder="select * fro..." />
@@ -43,13 +43,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Chat.class.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Chat.class.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/controller/Chat.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.875" vertical-offset="0" max-vertical-offset="630">
-              <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.33374536" vertical-offset="0" max-vertical-offset="809">
+              <caret line="25" column="0" selection-start-line="25" selection-start-column="2" selection-end-line="27" selection-end-column="11" />
               <folding>
-                <marker date="1422010949000" expanded="true" signature="330:364" placeholder="select * fro..." />
+                <marker date="1422012064000" expanded="true" signature="326:360" placeholder="select * fro..." />
+                <marker date="1422012064000" expanded="true" signature="458:492" placeholder="select * fro..." />
               </folding>
             </state>
           </provider>
@@ -179,10 +180,10 @@
         <option value="$PROJECT_DIR$/server/core/Cache.class.php" />
         <option value="$PROJECT_DIR$/client/haophp/functions.php" />
         <option value="$PROJECT_DIR$/server/functions.php" />
-        <option value="$PROJECT_DIR$/client/controller/Chat.class.php" />
         <option value="$PROJECT_DIR$/client/static/js/ichat.js" />
         <option value="$PROJECT_DIR$/server/core/Handler.class.php" />
         <option value="$PROJECT_DIR$/client/controller/Login.class.php" />
+        <option value="$PROJECT_DIR$/client/controller/Chat.class.php" />
       </list>
     </option>
   </component>
@@ -872,26 +873,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/controller/Chat.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.875" vertical-offset="0" max-vertical-offset="630">
-          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-          <folding>
-            <marker date="1422010949000" expanded="true" signature="330:364" placeholder="select * fro..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/controller/Login.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6118665" vertical-offset="120" max-vertical-offset="3330">
-          <caret line="46" column="17" selection-start-line="46" selection-start-column="17" selection-end-line="46" selection-end-column="17" />
+        <state vertical-scroll-proportion="-27.5" vertical-offset="165" max-vertical-offset="3330">
+          <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
           <folding>
             <element signature="e#111#127#0#PHP" expanded="true" />
             <marker date="1422011959000" expanded="true" signature="571:604" placeholder="select * fro..." />
             <marker date="1422011959000" expanded="true" signature="1984:2013" placeholder="select * fro..." />
             <marker date="1422011959000" expanded="true" signature="2417:2448" placeholder="select * fro..." />
             <marker date="1422011959000" expanded="true" signature="4341:4373" placeholder="select * fro..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/controller/Chat.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33374536" vertical-offset="0" max-vertical-offset="809">
+          <caret line="25" column="0" selection-start-line="25" selection-start-column="2" selection-end-line="27" selection-end-column="11" />
+          <folding>
+            <marker date="1422012064000" expanded="true" signature="326:360" placeholder="select * fro..." />
+            <marker date="1422012064000" expanded="true" signature="458:492" placeholder="select * fro..." />
           </folding>
         </state>
       </provider>

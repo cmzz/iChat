@@ -20,9 +20,12 @@ class Chat extends Controller {
     }
 
     public function index() {
-        if(!DB::fetch_first('select * from %t where openid = %s',array('online', session('openid')))) {
-            $this->redirect('Login/index');
-        }
+        DB::fetch_first('select * from %t where openid = %s',array('online', session('openid')));
+        echo DB::$lastSql;
+
+//        if(!DB::fetch_first('select * from %t where openid = %s',array('online', session('openid')))) {
+//            $this->redirect('Login/index');
+//        }
 
 
 
