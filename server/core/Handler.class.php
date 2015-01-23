@@ -110,11 +110,11 @@ class Handler {
 		$this->revHttp($serv, $fd, $from_id, $data);
 
 		$wsdata = $this->parseFrame($data);
-		$msg = $wsdata['message'];
-		$msg = trim($msg);
+		$tempmsg = $msg = $wsdata['message'];
+		$tempmsg = trim($tempmsg);
 
 		//忽略空消息
-		if(empty($msg)) return false;
+		if(empty($tempmsg)) return false;
 
 		#检查普通用户命令
 		$this->checkcmd($serv, $fd, $from_id,$msg);

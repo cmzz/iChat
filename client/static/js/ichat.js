@@ -97,6 +97,17 @@
         
         //发送消息
         send: function(data, noecho) {
+            var str = data;
+            str = $.trim(data);
+            var pattern = new RegExp("^[\s|\n]+","gi");
+            str = str.replace(pattern,"");
+
+
+            if(str.length < 1) {
+                $($.iChat.opt.inputbox).val('')
+                $($.iChat.opt.inputbox).focus();
+                return false;
+            }
             this.opt.ws.send(data);
             if(!noecho) {
                 var inpubox = $($.iChat.opt.inputbox);
@@ -205,10 +216,12 @@
                 if (m.message instanceof Array) {
                     var tmp = '';
                     for (var i in m.message) {
+                        if( m.message.length < 1 ) return false;
                         tmp += html.replace(/##message##/, m.message[i]);
                     }
                     html = tmp;
                 } else {
+                    if( m.message.length < 1 ) return false;
                     html = html.replace(/##message##/, m.message);
                 }
 
@@ -251,6 +264,8 @@
                 showbox.html('');
             }
             showbox.append(msgString);
+            $("#msgbox").scrollTop($(".message_lists").height()).s
+
         },
 
         showWelcomeMessage : function () {
