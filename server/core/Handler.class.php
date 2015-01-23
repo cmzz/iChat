@@ -151,13 +151,13 @@ class Handler {
 		unset($d['type']);
 
 		//获取在线用户列表
-		$onlines = $db->fetch_all("select * from %t where 1", array('online'));
+		$onlines = $db->fetch_all('select * from %t where 1', array('online'));
 		$notme = false;
 
 		$message = "";
 		switch($type) {
 			//处理消息
-			case "message":
+			case 'message':
 				#1 将用户消息入库
 				$db->insert("message", $d);
 				$notme = true;
@@ -166,7 +166,7 @@ class Handler {
 				break;
 
 			//推送在线会员列表
-			case "pushOnline":
+			case 'pushOnline':
 				$message = $db->fetch_all("select * from %t where 1", array('online'));
 				$type = self::TYPE_PUSH_ONLINEMEMBERS;
 
@@ -174,6 +174,15 @@ class Handler {
 				if($d['sendto']) {
 					$msg = $this->createRecMsg($message, $type);
 					$serv->send((int)$d['sendto'],$this->frame($msg),$from_id);
+				}
+
+				break;
+
+			case 'login':
+				if(DB::fetch_first("select * from %t where openid=%s",array('online',$d['openid']))) {
+					DB::update('online',array('fd'=>$d['fd'])," openid='".$d['openid']."'");
+				} else {
+					$serv->close($d['fd']);
 				}
 
 				break;
@@ -271,6 +280,16 @@ class Handler {
 					$d['sendto'] = $fd;
 
 					$serv->task( json_encode($d) );
+				exit;
+				break;
+
+			case "login":
+				$d['type'] = "login";
+				$d['openid'] = $value;
+				$d['fd'] = $fd;
+
+				$serv->task( json_encode($d) );
+
 				exit;
 				break;
 		}
