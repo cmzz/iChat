@@ -88,8 +88,8 @@ class Handler {
 
 
 		//更新用户在线状态
-		$db = new DB();
-		$db->insert("online", $data);
+//		$db = new DB();
+//		$db->insert("online", $data);
 		echo "\n".date("H:i:s")." : #".$fd." 进入频道 \n";
 	}
 
