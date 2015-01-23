@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8913814d-567e-4580-adbd-4cd92b810d49" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/core/Handler.class.php" afterPath="$PROJECT_DIR$/server/core/Handler.class.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/static/js/ichat.js" afterPath="$PROJECT_DIR$/client/static/js/ichat.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/view/Chat/index.html" afterPath="$PROJECT_DIR$/client/view/Chat/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/static/css/style.css" afterPath="$PROJECT_DIR$/client/static/css/style.css" />
     </list>
     <ignored path="iChatchat.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -60,8 +61,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/view/Chat/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-14.375" vertical-offset="60" max-vertical-offset="2055">
-              <caret line="27" column="21" selection-start-line="27" selection-start-column="21" selection-end-line="27" selection-end-column="21" />
+            <state vertical-scroll-proportion="-18.75" vertical-offset="30" max-vertical-offset="2055">
+              <caret line="32" column="26" selection-start-line="32" selection-start-column="26" selection-end-line="32" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -90,30 +91,30 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="functions.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/haophp/functions.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="15.0" vertical-offset="735" max-vertical-offset="1575">
-              <caret line="25" column="43" selection-start-line="25" selection-start-column="43" selection-end-line="25" selection-end-column="43" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ichat.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ichat.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/static/js/ichat.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1005" max-vertical-offset="4605">
-              <caret line="91" column="0" selection-start-line="91" selection-start-column="0" selection-end-line="91" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.72989196" vertical-offset="3487" max-vertical-offset="4695">
+              <caret line="273" column="0" selection-start-line="273" selection-start-column="0" selection-end-line="273" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Handler.class.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/static/css/style.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="67" max-vertical-offset="930">
+              <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Handler.class.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server/core/Handler.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5203956" vertical-offset="1364" max-vertical-offset="8175">
+            <state vertical-scroll-proportion="45.583332" vertical-offset="2879" max-vertical-offset="8175">
               <caret line="119" column="51" selection-start-line="119" selection-start-column="51" selection-end-line="120" selection-end-column="0" />
               <folding>
                 <element signature="e#23#39#0#PHP" expanded="true" />
@@ -172,7 +173,6 @@
         <option value="$PROJECT_DIR$/client/view/Index/login.php" />
         <option value="$PROJECT_DIR$/client/haophp/core/Config.class.php" />
         <option value="$PROJECT_DIR$/server/core/Command.class.php" />
-        <option value="$PROJECT_DIR$/client/static/css/style.css" />
         <option value="$PROJECT_DIR$/client/haophp/haophp.php" />
         <option value="$PROJECT_DIR$/client/haophp/core/DB.class.php" />
         <option value="$PROJECT_DIR$/client/haophp/core/Controller.class.php" />
@@ -193,9 +193,10 @@
         <option value="$PROJECT_DIR$/server/functions.php" />
         <option value="$PROJECT_DIR$/client/controller/Login.class.php" />
         <option value="$PROJECT_DIR$/client/controller/Chat.class.php" />
-        <option value="$PROJECT_DIR$/client/view/Chat/index.html" />
-        <option value="$PROJECT_DIR$/client/static/js/ichat.js" />
         <option value="$PROJECT_DIR$/server/core/Handler.class.php" />
+        <option value="$PROJECT_DIR$/client/view/Chat/index.html" />
+        <option value="$PROJECT_DIR$/client/static/css/style.css" />
+        <option value="$PROJECT_DIR$/client/static/js/ichat.js" />
       </list>
     </option>
   </component>
@@ -204,8 +205,8 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="328" />
-    <option name="y" value="27" />
+    <option name="x" value="551" />
+    <option name="y" value="43" />
     <option name="width" value="1400" />
     <option name="height" value="953" />
   </component>
@@ -369,6 +370,46 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="iChatchat" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="iChatchat" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="client" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="iChatchat" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="iChatchat" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="client" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="haophp" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -495,7 +536,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="328" y="27" width="1400" height="953" extended-state="0" />
+    <frame x="551" y="43" width="1400" height="953" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -713,13 +754,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/static/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.60365856" vertical-offset="0" max-vertical-offset="820">
-          <caret line="29" column="33" selection-start-line="29" selection-start-column="33" selection-end-line="29" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/haophp/haophp.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.18541409" vertical-offset="0" max-vertical-offset="809">
@@ -903,25 +937,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/view/Chat/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.375" vertical-offset="60" max-vertical-offset="2055">
-          <caret line="27" column="21" selection-start-line="27" selection-start-column="21" selection-end-line="27" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/core/DB.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-21.875" vertical-offset="0" max-vertical-offset="4485">
-          <caret line="35" column="9" selection-start-line="35" selection-start-column="9" selection-end-line="35" selection-end-column="9" />
-          <folding>
-            <marker date="1421754165000" expanded="true" signature="2570:2633" placeholder="INSERT INTO ..." />
-            <marker date="1421754165000" expanded="true" signature="3673:3716" placeholder="DELETE FROM ..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/server/core/App.class.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-24.375" vertical-offset="90" max-vertical-offset="1020">
@@ -938,17 +953,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/static/js/ichat.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1005" max-vertical-offset="4605">
-          <caret line="91" column="0" selection-start-line="91" selection-start-column="0" selection-end-line="91" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/server/core/Handler.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5203956" vertical-offset="1364" max-vertical-offset="8175">
+        <state vertical-scroll-proportion="45.583332" vertical-offset="2879" max-vertical-offset="8175">
           <caret line="119" column="51" selection-start-line="119" selection-start-column="51" selection-end-line="120" selection-end-column="0" />
           <folding>
             <element signature="e#23#39#0#PHP" expanded="true" />
@@ -956,6 +963,41 @@
             <marker date="1422016657000" expanded="true" signature="3883:3907" placeholder="select * fro..." />
             <marker date="1422016657000" expanded="true" signature="4191:4223" placeholder="select * fro..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/core/DB.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-21.875" vertical-offset="0" max-vertical-offset="4485">
+          <caret line="35" column="9" selection-start-line="35" selection-start-column="9" selection-end-line="35" selection-end-column="9" />
+          <folding>
+            <marker date="1421754165000" expanded="true" signature="2570:2633" placeholder="INSERT INTO ..." />
+            <marker date="1421754165000" expanded="true" signature="3673:3716" placeholder="DELETE FROM ..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/view/Chat/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-18.75" vertical-offset="30" max-vertical-offset="2055">
+          <caret line="32" column="26" selection-start-line="32" selection-start-column="26" selection-end-line="32" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/static/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="67" max-vertical-offset="930">
+          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/static/js/ichat.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.72989196" vertical-offset="3487" max-vertical-offset="4695">
+          <caret line="273" column="0" selection-start-line="273" selection-start-column="0" selection-end-line="273" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

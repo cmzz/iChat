@@ -41,3 +41,11 @@ ul, ol {list-style: none;}
 
 .loading {text-align: center; margin-top: 15px;}
 .loading img  {height: 30px; width: 30px;}
+
+
+
+#msgbox .message_item { font-size: 13px !important; line-height: 24px; }
+#msgbox .mymessage {color: #0099cc; }
+#msgbox .welcomemessage {color: #cccc00; }
+#msgbox .sysnotice {color: #cc3300; }
+#msgbox .sendtime { color: #999;}

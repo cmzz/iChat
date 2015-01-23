@@ -182,11 +182,11 @@
                     case msgtype.echomsg:
                         m.from = "你";
                         m.class = "mymessage";
-                        m.head = "对所有人说 : ";
+                        m.head = "对所有人说";
                         break;
 
                     case msgtype.normal:
-                        m.head = "对所有人说 : ";
+                        m.head = "对所有人说";
 
                         break;
                     case msgtype.personal:
@@ -199,18 +199,24 @@
 
                 var html  = '<li class="message_item '+ m.class +'">';
                 if (m.showtime) {
-                    html += '<span class="sendtime">[' + new Date().format("hh:mm:ss") + ']</span> ';
+                    html += '<span class="sendtime">[' + new Date().format("mm:ss") + ']</span> ';
                 }
+                html += '<span class="msgmeta">';
                 if (m.from) {
-                    html += m.from;
+                    html += '<span class="from">'+m.from+'</span>';
                 }
                 if (m.head) {
                     html += m.head;
+                    var showmh = 1;
                 }
                 if (m.to) {
                     html += m.to;
                 }
+                html += '</span>';
+                if (showmh) html += ' : ';
+                html += '<span class="message">';
                 html += "##message##";
+                html += '</span>';
                 html += '</li>';
 
                 if (m.message instanceof Array) {
