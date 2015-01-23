@@ -43,7 +43,7 @@ class Login extends Controller {
             }
 
             $_POST = null;
-            $this->redirect('Login/index');
+//            $this->redirect('Login/index');
             exit;
         }
 
