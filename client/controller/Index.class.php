@@ -20,9 +20,9 @@ class Index extends Controller {
     }
 
     public function index() {
-//        if(!session('uid')) {
-//            $this->redirect('login');
-//        }
+        if(!session('uid')) {
+            $this->redirect('login');
+        }
 
         include template();
     }

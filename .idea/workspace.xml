@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8913814d-567e-4580-adbd-4cd92b810d49" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/core/Handler.class.php" afterPath="$PROJECT_DIR$/server/core/Handler.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/index.php" afterPath="$PROJECT_DIR$/client/index.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/controller/Index.class.php" afterPath="$PROJECT_DIR$/client/controller/Index.class.php" />
     </list>
     <ignored path="iChatchat.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,16 +27,16 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Index.class.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Index.class.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/controller/Index.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.833333" vertical-offset="106" max-vertical-offset="2550">
-              <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.33250928" vertical-offset="106" max-vertical-offset="2550">
+              <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
               <folding>
                 <element signature="e#6#86#0#PHP" expanded="true" />
                 <element signature="e#111#127#0#PHP" expanded="true" />
-                <marker date="1421946548000" expanded="true" signature="2133:2165" placeholder="select * fro..." />
-                <marker date="1421946548000" expanded="true" signature="2602:2631" placeholder="select * fro..." />
+                <marker date="1421979497000" expanded="true" signature="2127:2159" placeholder="select * fro..." />
+                <marker date="1421979497000" expanded="true" signature="2596:2625" placeholder="select * fro..." />
               </folding>
             </state>
           </provider>
@@ -83,10 +82,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Handler.class.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Handler.class.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server/core/Handler.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7589617" vertical-offset="781" max-vertical-offset="7230">
+            <state vertical-scroll-proportion="-25.583334" vertical-offset="781" max-vertical-offset="7230">
               <caret line="93" column="5" selection-start-line="93" selection-start-column="5" selection-end-line="93" selection-end-column="5" />
               <folding>
                 <element signature="e#23#39#0#PHP" expanded="true" />
@@ -149,11 +148,11 @@
         <option value="$PROJECT_DIR$/client/haophp/core/DB.class.php" />
         <option value="$PROJECT_DIR$/client/haophp/core/Controller.class.php" />
         <option value="$PROJECT_DIR$/client/haophp/functions.php" />
-        <option value="$PROJECT_DIR$/client/controller/Index.class.php" />
         <option value="$PROJECT_DIR$/client/static/js/ichat.js" />
         <option value="$PROJECT_DIR$/client/view/Index/index.html" />
         <option value="$PROJECT_DIR$/client/index.php" />
         <option value="$PROJECT_DIR$/server/core/Handler.class.php" />
+        <option value="$PROJECT_DIR$/client/controller/Index.class.php" />
       </list>
     </option>
   </component>
@@ -452,7 +451,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="503" y="63" width="1400" height="953" extended-state="1" />
+    <frame x="503" y="63" width="1400" height="953" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -533,8 +532,8 @@
           <folding>
             <element signature="e#6#86#0#PHP" expanded="true" />
             <element signature="e#111#127#0#PHP" expanded="true" />
-            <marker date="1421946548000" expanded="true" signature="2133:2165" placeholder="select * fro..." />
-            <marker date="1421946548000" expanded="true" signature="2602:2631" placeholder="select * fro..." />
+            <marker date="1421979497000" expanded="true" signature="2127:2159" placeholder="select * fro..." />
+            <marker date="1421979497000" expanded="true" signature="2596:2625" placeholder="select * fro..." />
           </folding>
         </state>
       </provider>
@@ -816,19 +815,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/controller/Index.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.833333" vertical-offset="106" max-vertical-offset="2550">
-          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-          <folding>
-            <element signature="e#6#86#0#PHP" expanded="true" />
-            <element signature="e#111#127#0#PHP" expanded="true" />
-            <marker date="1421946548000" expanded="true" signature="2133:2165" placeholder="select * fro..." />
-            <marker date="1421946548000" expanded="true" signature="2602:2631" placeholder="select * fro..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/haophp/functions.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-29.958334" vertical-offset="466" max-vertical-offset="1350">
@@ -890,13 +876,26 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/server/core/Handler.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7589617" vertical-offset="781" max-vertical-offset="7230">
+        <state vertical-scroll-proportion="-25.583334" vertical-offset="781" max-vertical-offset="7230">
           <caret line="93" column="5" selection-start-line="93" selection-start-column="5" selection-end-line="93" selection-end-column="5" />
           <folding>
             <element signature="e#23#39#0#PHP" expanded="true" />
             <marker date="1421979446000" expanded="true" signature="3286:3310" placeholder="select * fro..." />
             <marker date="1421979446000" expanded="true" signature="3616:3640" placeholder="select * fro..." />
             <marker date="1421979446000" expanded="true" signature="3923:3955" placeholder="select * fro..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/controller/Index.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33250928" vertical-offset="106" max-vertical-offset="2550">
+          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+          <folding>
+            <element signature="e#6#86#0#PHP" expanded="true" />
+            <element signature="e#111#127#0#PHP" expanded="true" />
+            <marker date="1421979497000" expanded="true" signature="2127:2159" placeholder="select * fro..." />
+            <marker date="1421979497000" expanded="true" signature="2596:2625" placeholder="select * fro..." />
           </folding>
         </state>
       </provider>
