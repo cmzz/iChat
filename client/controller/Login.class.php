@@ -42,7 +42,7 @@ class Login extends Controller {
                 echo '用户不存在';
             }
 
-            unset($_POST);
+            $_POST = null;
             $this->redirect('Login/index');
             exit;
         }
