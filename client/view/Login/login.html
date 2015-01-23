@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>QChat - 登陆</title>
+
+    <!-- Bootstrap -->
+    <link href="<?php echo _STATIC; ?>/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <style type="text/css">
+        .wrap {margin: 0 auto; width: 600px;}
+        .login .loginform {padding: 40px; border:1px solid #eee;}
+        .login .loginform .form-control, .login button {height: 55px;font-size: 21px;}
+        .login button {font-size: 14px;}
+        .login .logo {font-size: 50px; text-align: center; display: block; margin-top: 50px; margin-bottom: 20px;}
+
+        #loginbtn {text-align: center; position: relative}
+        #loginbtn > div {width: 172px; display: inline-block; float:left;}
+        #loginbtn a {display: block; height: 120px;}
+        #loginbtn a img {width: 60px; height: 60px; margin-top: 30px;}
+        #loginbtn p {display: block; height: 30px;  width: 100px; line-height: 30px;margin: auto; border-radius: 15px; background: #dfdfdf}
+        #loginbtn .tips {position: absolute; top: -35px; background: #fff; padding: 0 10px; width: 150px; font-size: 12px; left: 50%; margin-left: -80px; }
+        .reglink {display: block; margin-top: 35px; text-align: center}
+
+    </style>
+
+</head>
+<body>
+
+<div class="wrap">
+    <div id="form" class="login">
+        <h1 class="logo">QChat</h1>
+
+        <form class="loginform" role="form" method="post" action="<?php echo url('Login/index'); ?>">
+            <div class="form-group">
+                <label class="control-label">邮箱:</label>
+                <input class="form-control" required="1" name="email" type="text">
+            </div>
+
+            <div class="form-group">
+                <label for="password" class="control-label">登陆密码:</label>
+                <input type="password" name="password" id="password" class="form-control" required>
+            </div>
+
+            <div class="form-group buttons">
+                <button type="submit" class="btn btn-warning btn-block">
+                    登 陆
+                </button>
+            </div>
+
+            <hr />
+
+            <div id="loginbtn">
+                <p class="tips">或使用下面的账号登陆</p>
+                <div>
+                    <a  href="<?php echo $wbloginurl; ?>">
+                        <img src="<?php echo _STATIC; ?>/images/weibo_gray.png"/>
+                    </a>
+                    <p>使用微博登陆</p>
+                </div>
+
+                <div>
+                    <a  href="<?php echo $loginurl; ?>">
+                        <img src="<?php echo _STATIC; ?>/images/qqlogo_gray.png"/>
+                    </a>
+                    <p>使用QQ登陆</p>
+                </div>
+
+                <div>
+                    <a  href="#">
+                        <img src="<?php echo _STATIC; ?>/images/weixin_gray.png"/>
+                    </a>
+                    <p>使用微信登陆</p>
+                </div>
+            </div>
+
+            <div class="clearfix cl"></div>
+
+            <a class="reglink" href="<?php echo url('Login/reg'); ?>">我要注册</a>
+        </form>
+    </div>
+</div>
+
+
+<script src="<?php echo _STATIC; ?>/js/jquery.min.js"></script>
+<script src="<?php echo _STATIC; ?>/dist/js/bootstrap.min.js"></script>
+<script>
+    $(function(){
+        $("#loginbtn img").hover(function(){
+                    var e = $(this)
+                    e.stop().animate({marginTop:'15px'},250,function(){
+                        e.animate({marginTop:'20px'},250);
+                    });
+                },function(){
+                    var e = $(this)
+                    e.stop().animate({marginTop:"36px"},250,function(){
+                        e.animate({marginTop:"30px"},250);
+                    });
+                }
+        )
+    })
+</script>
+
+</body>
+</html>

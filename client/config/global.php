@@ -14,7 +14,7 @@
  * 如果应用很简单，也可以开启单控制器模式，即只有一个控制器，路由只需要传方法即可
  */
 return array(
-    'singleController'   => true,
+    'singleController'   => false,
     'defauleController'  => 'Index',
 
     'allowModule' => array(),
@@ -29,4 +29,10 @@ return array(
         'appid'     => '101188364',
         'appkey'    => '493f767490f5a3694b126d981b470f57'
     ),
+
+    //微博
+    'weibo' => array(
+        'appkey' => '410883190',
+        'appsecret' => '60654abab588160297cffdf45a2b4245'
+    )
 );

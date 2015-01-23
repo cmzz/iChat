@@ -4,6 +4,7 @@ namespace core;
 use core\Config;
 use core\Command;
 use core\DB;
+use core\Cache;
 
 class Handler {
 	const OPCODE_CONTINUATION_FRAME = 0x0;
@@ -37,8 +38,8 @@ class Handler {
 
 	/**
 	 * 服务启动回调
-	 * @param  swoole_server $serv [description]
-	 * @return [type]              [description]
+	 *
+	 * @param \swoole_server $serv
 	 */
 	public function start(\swoole_server $serv) {
 		$this->db = new DB();
@@ -49,7 +50,8 @@ class Handler {
 
 	/**
 	 * 进程启动
-	 * @return [type] [description]
+	 *
+	 * @param $serv
 	 */
 	public function workStart($serv) {
 		// 进程0 执行在线用户检查及推送 3分钟
@@ -58,7 +60,6 @@ class Handler {
 
 	/**
 	 * 进程关闭
-	 * @return [type] [description]
 	 */
 	public function workStop() {
 		
@@ -66,7 +67,6 @@ class Handler {
 
 	/**
 	 * 进程异程
-	 * @return [type] [description]
 	 */
 	public function workError() {
 
@@ -74,7 +74,10 @@ class Handler {
 
 	/**
 	 * 新链接进入时的回调
-	 * @return [type] [description]
+	 *
+	 * @param $serv
+	 * @param $fd
+	 * @param $from_id
 	 */
 	public function connect($serv, $fd, $from_id) {
 		#可以在这里做将用户加入到在线列表		
@@ -95,7 +98,12 @@ class Handler {
 
 	/**
 	 * 服务器收到客户端消息时的回调
-	 * @return [type] [description]
+	 *
+	 * @param \swoole_server $serv
+	 * @param $fd
+	 * @param $from_id
+	 * @param $data
+	 * @return bool
 	 */
 	public function receive(\swoole_server $serv, $fd, $from_id, $data) {
 		//http握手
@@ -113,8 +121,9 @@ class Handler {
 
 		#确认用户是否管理员
 
-
 		#管理员命令
+
+
 		$d = array(
 			'msg' => $msg,
 			'posttime' => TIME,
@@ -123,28 +132,46 @@ class Handler {
 			'type' => 'message'
 		);
 
+
 		$serv->send($fd,$this->frame($msg));
 		$serv->task( json_encode($d));
 	}
 
 	/**
 	 * 用户退出
-	 * @return [type] [description]
+	 *
+	 * @param $serv
+	 * @param $fd
+	 * @param $from_id
 	 */
 	public function close($serv, $fd, $from_id) {
 		//从在线列表移除
 		echo date("H:i:s")." : #".$fd." 离开了  \n";
 		$db = new DB();
 		$db->delete("online", "fd=".$fd);
+
+		//TODO:清理
+		$cache = new Cache();
+		$cache->delete($fd);
+
+//		$data['type'] = "pushOnline";
+//		$serv->task( json_encode($data) );
 	}
 
 	/**
 	 * 异步任务
-	 * @return [type] [description]
+	 *
+	 * @param $serv
+	 * @param $task_id
+	 * @param $from_id
+	 * @param $data
 	 */
 	public function task($serv, $task_id, $from_id, $data) {
 		static $db = null;
+		static $cache = null;
+
 		if(!$db) {$db = new DB();}
+		if(!$cache) {$cache = new Cache();}
 
 		$d = json_decode($data, true);
 		$type = $d['type'];
@@ -179,14 +206,26 @@ class Handler {
 				break;
 
 			case 'login':
-				if(DB::fetch_first("select * from %t where openid=%s",array('online',$d['openid']))) {
-					DB::update('online',array('fd'=>$d['fd'])," openid='".$d['openid']."'");
+				if($db->fetch_first("select * from %t where openid=%s",array('online',$d['openid']))) {
+					$db->update('online',array('fd'=>$d['fd'])," openid='".$d['openid']."'");
+					$cache->set($d['fd'], $d['openid']);
 				} else {
 					$serv->close($d['fd']);
 				}
 
 				break;
+
+			case 'logout':
+				$cache->delete($d['fd']);
+				break;
 		}
+
+
+
+		//检查登陆授权
+		var_dump($cache->get($d['fd']));
+		if(!$cache->get($d['fd'])) { $serv->close($d['fd']); }
+
 
 		//将消息发给在线用户
 		if($onlines) {
@@ -207,7 +246,10 @@ class Handler {
 
 	/**
 	 * 任务完成后
-	 * @return [type] [description]
+	 *
+	 * @param $serv
+	 * @param $task_id
+	 * @param $data
 	 */
 	public function finish($serv, $task_id, $data) {
 		echo "Task {$task_id} finish\n";
@@ -216,7 +258,6 @@ class Handler {
 
 	/**
 	 * 服务器关闭
-	 * @return [type] [description]
 	 */
 	public function shutdown() {
 		echo "Task {$task_id} finish\n";
@@ -225,7 +266,9 @@ class Handler {
 
 	/**
 	 * 定时器
-	 * @return [type] [description]
+	 *
+	 * @param $serv
+	 * @param $interval
 	 */
 	public function timer($serv, $interval) {
 		switch ($interval) {
@@ -243,11 +286,12 @@ class Handler {
 
 	/**
 	 * 创建返回给客户的数据
+	 *
 	 * @param $data
-	 * @param $type
-	 * 	100 为普通消息
-	 *  101 用户上线消息
-	 *  109 用户离线消息
+	 * @param $type  100 为普通消息 |  101 用户上线消息 | 109 用户离线消息
+	 * @param string $from
+	 * @param string $to
+	 * @return string json
 	 */
 	public function createRecMsg($data, $type, $from="", $to='') {
 		$tmp = array();
@@ -277,6 +321,7 @@ class Handler {
 		switch($cmd) {
 			case "getOnlineList":
 					$d['type'] = "pushOnline";
+					$d['fd'] = $fd;
 					$d['sendto'] = $fd;
 
 					$serv->task( json_encode($d) );
@@ -304,7 +349,12 @@ class Handler {
 
 	/**
 	 * ws握手
-	 * @return [type] [description]
+	 *
+	 * @param $serv
+	 * @param $fd
+	 * @param $from_id
+	 * @param $data
+	 * @return bool
 	 */
 	public function revHttp($serv, $fd, $from_id, $data) {
 		$match = array();
@@ -322,9 +372,10 @@ Sec-WebSocket-Accept:".$response_key." \r\n\r\n";
 	}
 
 	/**
-	 * 解析tcp收到的二进制数据
-	 * @param  [type] $buffer [description]
-	 * @return [type]         [description]
+	 * 收到的二进制数据
+	 *
+	 * @param $buffer
+	 * @return null|string
 	 */
 	public function decode($buffer)  {
 	    $len = $masks = $data = $decoded = null;
@@ -345,10 +396,14 @@ Sec-WebSocket-Accept:".$response_key." \r\n\r\n";
 	    return $decoded;
 	}
 
+
 	/**
-	 * 给tcp返回二进制数据
-	 * @param  [type] $s [description]
-	 * @return [type]    [description]
+	 * 返回二进制数据
+	 *
+	 * @param $message 要编码的消息
+	 * @param int $opcode
+	 * @param bool $end
+	 * @return string
 	 */
 	public function frame($message,  $opcode = self::OPCODE_TEXT_FRAME, $end = true ) {
 		$fin    = true === $end ? 0x1 : 0x0;
@@ -376,6 +431,10 @@ Sec-WebSocket-Accept:".$response_key." \r\n\r\n";
 		return $out;
 	}
 
+	/**
+	 * @param $data
+	 * @return array|bool
+	 */
 	private function parseFrame(&$data)
 	{
 		//websocket
@@ -459,6 +518,10 @@ Sec-WebSocket-Accept:".$response_key." \r\n\r\n";
 
 	}
 
+	/**
+	 * @param $ws
+	 * @return mixed
+	 */
 	protected function parseMessage($ws)
 	{
 		$buffer = $ws['buffer'];

@@ -17,6 +17,13 @@ class Socket {
 			'debug_mode'=> 0,
 			'daemonize' => false
 		);
+
+		if (isset($argv[1]) and $argv[1] == 'daemon') {
+			$config['daemonize'] = true;
+		} else {
+			$config['daemonize'] = false;
+		}
+
 		$serv = new \swoole_server("0.0.0.0", 8808);
 		$serv->set($config);
 		$serv->config = $config;

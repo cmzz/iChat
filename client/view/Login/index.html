@@ -25,9 +25,10 @@
             font-size: 30px;
             width: 500px;
         }
-        #loginbtn {margin: 0 auto; width: 140px; text-align: center; margin-top:160px;}
+        #loginbtn {margin: 0 auto; width: 600px; text-align: center; margin-top:160px;}
+        #loginbtn > div {width: 200px; display: inline-block; float:left;}
         #loginbtn a {display: block; height: 140px;}
-        #loginbtn p {display: block; height: 30px; line-height: 30px; border-radius: 15px; background: #dfdfdf}
+        #loginbtn p {display: block; height: 30px;  width: 100px; line-height: 30px;margin: auto; border-radius: 15px; background: #dfdfdf}
     </style>
 </head>
 <body>
@@ -35,10 +36,26 @@
 <div id="mq_login_title">QChat</div>
 
 <div id="loginbtn">
-    <a  href="<?php echo $loginurl; ?>">
-        <img src="<?php echo _STATIC; ?>/images/qqlogo_gray.png"/>
-    </a>
-    <p>使用QQ登陆</p>
+    <div>
+        <a  href="<?php echo $wbloginurl; ?>">
+            <img src="<?php echo _STATIC; ?>/images/weibo_gray.png"/>
+        </a>
+        <p>使用微博登陆</p>
+    </div>
+
+    <div>
+        <a  href="<?php echo $loginurl; ?>">
+            <img src="<?php echo _STATIC; ?>/images/qqlogo_gray.png"/>
+        </a>
+        <p>使用QQ登陆</p>
+    </div>
+
+    <div>
+        <a  href="#">
+            <img src="<?php echo _STATIC; ?>/images/weixin_gray.png"/>
+        </a>
+        <p>使用微信登陆</p>
+    </div>
 </div>
 
 <script src="<?php echo _STATIC; ?>/js/jquery.min.js"></script>

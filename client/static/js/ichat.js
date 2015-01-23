@@ -67,8 +67,12 @@
             this.opt.ws.onopen = function () {
                 $.iChat.showWelcomeMessage();
                 $.iChat.opt.heartbeat_timer = setInterval( function(){keepalive($.iChat.opt.ws)}, 180000 );
-                $.iChat.send("cmd-getOnlineList:getOnlineList",true);
                 $.iChat.send("cmd-login:"+ $.iChat.opt.openid,true);
+                setTimeout(function() {
+                    $.iChat.send("cmd-getOnlineList:getOnlineList",true);
+                    clearTimeout();
+                },200)
+
             }
 
             this.opt.ws.onmessage = this.receive;

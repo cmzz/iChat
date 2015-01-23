@@ -15,22 +15,26 @@ function dump($obj) {
     echo $output;
 }
 
-function session($k,$v="") {
+function session($k, $v="") {
     if(!$k) return $_SESSION;
-    if(!$v) {
-        $ret = $_SESSION[$k];
-        return $ret;
+
+    if($v === null) {
+        unset($_SESSION[$k]);
     } else {
-        if(is_array($v)) {
-            foreach($v as $vk => $vv) {
-                $_SESSION[$k][$vk] = $vv;
+        if($v) {
+            if(is_array($v)) {
+                foreach($v as $vk => $vv) {
+                    $_SESSION[$k][$vk] = $vv;
+                }
+            } else {
+                $_SESSION[$k] = $v;
             }
         } else {
-            $_SESSION[$k] = $v;
+            $ret = $_SESSION[$k];
+            return $ret;
         }
     }
 
-    return true;
 }
 
 /**
@@ -40,9 +44,17 @@ function session($k,$v="") {
  * @throws Exception
  */
 function template($template="") {
-
-    $file = $template ? $template : ACTION ;
-    $tempfiel = APP_PATH.MODULE.'view/'.CONTROLLER.'/'.$file.'.html';
+    if($template) {
+        if(strpos('/',$template)) {
+            $tmp = explode('/',$template);
+            $tempfiel = APP_PATH.MODULE.'view/'.$tmp[0].'/'.$tmp[1].'.html';
+        } else {
+            $tempfiel = APP_PATH.MODULE.'view/'.CONTROLLER.'/'.$template.'.html';
+        }
+    } else {
+        $file = $template ? $template : ACTION ;
+        $tempfiel = APP_PATH.MODULE.'view/'.CONTROLLER.'/'.ACTION.'.html';
+    }
 
     if(!file_exists($tempfiel)) {
         throw new \Exception("模板不存在: ".$tempfiel);
@@ -53,10 +65,13 @@ function template($template="") {
 
 /**
  * 目前只支持控制器和方法的跳转
+ *
  * @param $url
- * @param string $vars 字符串形式
+ * @param string $vars
  * @param string $suffix
  * @param bool $showdomain
+ * @param bool $redirect
+ * @return string
  */
 function url($url, $vars="", $suffix=".html", $showdomain=false, $redirect=false) {
     $tmp = explode('/',$url);

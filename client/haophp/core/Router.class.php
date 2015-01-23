@@ -15,6 +15,8 @@ class Router {
         $pathinfo = $_SERVER['PATH_INFO'];
         $queryString = $_SERVER['QUERY_STRING'];
 
+        $pathinfo = str_replace('.html','',$pathinfo);
+
         $patharr = explode("/", trim($pathinfo,'/'));
 
         if($config['mutileModule']) {
@@ -39,7 +41,7 @@ class Router {
 
 
         define("MODULE",$module ? $module.'/' : '');
-        define('CONTROLLER',$controller);
+        define('CONTROLLER',$controller ? $controller : 'Index');
         define('ACTION',$action ? $action : 'index');
     }
 }
