@@ -224,7 +224,7 @@ class Handler {
 
 		//检查登陆授权
 		var_dump($cache->get($d['fd']));
-		if(!$cache->get($d['fd'])) { $serv->close($d['fd']); }
+//		if(!$cache->get($d['fd'])) { $serv->close($d['fd']); }
 
 
 		//将消息发给在线用户
